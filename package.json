@@ -1,0 +1,22 @@
+{
+  "name": "worker",
+  "version": "0.0.0",
+  "description": "The worker server that will handle all docker manipulating routine",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/egorovpavel/worker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/egorovpavel/worker/issues"
+  },
+  "homepage": "https://github.com/egorovpavel/worker",
+  "dependencies": {
+    "mocha": "~1.18.2"
+  }
+}
