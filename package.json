@@ -17,6 +17,10 @@
   },
   "homepage": "https://github.com/egorovpavel/worker",
   "dependencies": {
-    "mocha": "~1.18.2"
+    "dockerode": "~1.2.8"
+  },
+  "devDependencies": {
+    "mocha": "~1.18.2",
+    "should": "^3.2.0-beta1"
   }
 }
