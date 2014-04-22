@@ -4,7 +4,7 @@
   "description": "The worker server that will handle all docker manipulating routine",
   "main": "index.js",
   "scripts": {
-    "test": "mocha tests"
+    "test": "sudo mocha -R spec tests"
   },
   "repository": {
     "type": "git",
