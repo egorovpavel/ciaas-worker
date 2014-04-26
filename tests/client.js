@@ -1,18 +1,19 @@
-var rpc = require('rpc-stream');
-var should = require('should');
+'use strict';
+require('should');
 var Client = require('../lib/client.js');
 var dnode = require('dnode');
+var logger = require('winston');
 
 describe('Client', function() {
 	describe('Connection', function() {
 		it('Should be established', function(done, fail) {
 			this.timeout(5000);
 
-			var client = new Client(3000);
+            var client = new Client('127.0.0.1', 3000, logger);
 			var server = dnode(function(remote, connection) {
 				this.join = function(id, callback) {
 
-				}
+                };
 				connection.on('ready', function() {
 					client.stop();
 					server.close();
@@ -29,7 +30,7 @@ describe('Client', function() {
 		it('Should perform hand shake with pool', function(done, fail) {
 			this.timeout(5000);
 
-			var client = new Client(3000);
+            var client = new Client('127.0.0.1', 3000, logger);
 			var server = dnode(function(remote, connection) {
 				this.join = function(id, callback) {
 					callback(id);
@@ -54,11 +55,11 @@ describe('Client', function() {
 				},
 				payload: {
 					commands: [
-						"echo 'Hello world'",
+                        "echo 'Hello world'"
 					]
 				}
 			};
-			var client = new Client(3000);
+            var client = new Client('127.0.0.1', 3000, logger);
 			var server = dnode(function(remote, connection) {
 				this.join = function(id, callback) {
 					callback(id);

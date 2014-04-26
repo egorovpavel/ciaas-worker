@@ -1,28 +1,29 @@
 {
-  "name": "worker",
-  "version": "0.0.0",
-  "description": "The worker server that will handle all docker manipulating routine",
-  "main": "index.js",
-  "scripts": {
-    "test": "sudo mocha -R spec tests"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/egorovpavel/worker.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/egorovpavel/worker/issues"
-  },
-  "homepage": "https://github.com/egorovpavel/worker",
-  "dependencies": {
-    "dockerode": "~1.2.8",
-    "dnode": "^1.2.0",
-    "rpc-stream": "^2.0.0"
-  },
-  "devDependencies": {
-    "mocha": "~1.18.2",
-    "should": "^3.2.0-beta1"
-  }
+    "name": "worker",
+    "version": "0.0.0",
+    "description": "The worker server that will handle all docker manipulating routine",
+    "main": "index.js",
+    "scripts": {
+        "test": "sudo mocha -R spec tests"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/egorovpavel/worker.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/egorovpavel/worker/issues"
+    },
+    "homepage": "https://github.com/egorovpavel/worker",
+    "dependencies": {
+        "dockerode": "~1.2.8",
+        "dnode": "^1.2.0",
+        "rpc-stream": "^2.0.0",
+        "winston": "^0.7.3"
+    },
+    "devDependencies": {
+        "mocha": "~1.18.2",
+        "should": "^3.2.0-beta1"
+    }
 }
