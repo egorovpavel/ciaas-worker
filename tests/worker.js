@@ -17,7 +17,9 @@ describe('Worker', function() {
 				}
 			};
 
-			worker.put(item).on('complete', function(data) {
+            var container = worker.put(item);
+
+            container.on('complete', function (data) {
 				data.StatusCode.should.be.equal(0);
 				done();
 			});
