@@ -61,10 +61,10 @@ describe('Worker', function() {
 				}
 			};
 
-			worker.put(item).on('complete', function(data) {
+            worker.put(item).on('timeout', function (data) {
 				data.StatusCode.should.be.equal(100);
 				done();
 			});
 		});
 	});
-})
+});

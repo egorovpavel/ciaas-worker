@@ -77,11 +77,6 @@ describe('Client', function () {
                 this.join = function (id, callback) {
                     callback(id);
 
-                    remote.submit(1);
-                };
-                this.accept = function (itemId, callback) {
-                    itemId.should.be.equal(1);
-                    // get item by id
                     remote.exec(item, function (result) {
                         client.stop();
                         server.close();
@@ -89,8 +84,8 @@ describe('Client', function () {
                         done();
                     });
                 };
-                this.reject = function (itemId, callback) {
-                    fail();
+                this.report = function () {
+
                 };
             }).listen(3000);
 
@@ -115,23 +110,19 @@ describe('Client', function () {
             var server = dnode(function (remote, connection) {
                 this.join = function (id, callback) {
                     callback(id);
-                    remote.submit(1);
                     remote.shutdown();
-                    remote.submit(1);
-                };
-                this.accept = function (itemId, callback) {
-                    remote.exec(item, function (result) {
+                    remote.exec(item, function () {
+                        client.stop();
+                        server.close();
+                        done();
                     });
                 };
-                this.reject = function (id, callback) {
+                this.leave = function (callback) {
                     callback();
-                    client.stop();
-                    server.close();
-                    done();
                 };
-                this.leave = function (id, callback) {
-
-                }
+                this.report = function (callback) {
+                    callback();
+                };
             }).listen(3000);
 
             client.start();
