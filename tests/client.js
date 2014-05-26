@@ -1,14 +1,9 @@
 'use strict';
 require('should');
-require("blanket")
+require("blanket");
 var Client = require('../lib/client.js');
 var dnode = require('dnode');
-var logger = require('winston');
-
-logger.setLevels({debug: 0, info: 1, silly: 2, warn: 3, error: 4});
-logger.addColors({debug: 'green', info: 'cyan', silly: 'magenta', warn: 'yellow', error: 'red'});
-logger.remove(logger.transports.Console);
-logger.add(logger.transports.Console, { level: 'error', colorize: true });
+var logger = require('../lib/logger.js')();
 
 describe('Client', function () {
     describe('Connection', function () {
