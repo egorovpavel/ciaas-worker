@@ -1,5 +1,6 @@
 'use strict';
 require('should');
+require("blanket")
 var Client = require('../lib/client.js');
 var dnode = require('dnode');
 var logger = require('winston');
@@ -7,14 +8,14 @@ var logger = require('winston');
 logger.setLevels({debug: 0, info: 1, silly: 2, warn: 3, error: 4});
 logger.addColors({debug: 'green', info: 'cyan', silly: 'magenta', warn: 'yellow', error: 'red'});
 logger.remove(logger.transports.Console);
-logger.add(logger.transports.Console, { level: 'debug', colorize: true });
+logger.add(logger.transports.Console, { level: 'error', colorize: true });
 
 describe('Client', function () {
     describe('Connection', function () {
         it('Should be established', function (done, fail) {
             this.timeout(5000);
 
-            var client = new Client('127.0.0.1', 3000, logger);
+            var client = new Client('127.0.0.1', 3100, logger);
 
             var server = dnode(function (remote, connection) {
                 this.join = function (id, callback) {
@@ -22,7 +23,7 @@ describe('Client', function () {
                     server.close();
                     done();
                 };
-            }).listen(3000);
+            }, {weak: false}).listen(3100);
 
             client.start();
 
@@ -30,7 +31,7 @@ describe('Client', function () {
         it('Emits "disconnect" event on failure', function (done, fail) {
             this.timeout(5000);
 
-            var client = new Client('127.0.0.1', 3000, logger);
+            var client = new Client('127.0.0.1', 3100, logger);
             client.onDisconnect(function () {
                 done();
             });
@@ -43,7 +44,7 @@ describe('Client', function () {
         it('Should perform hand shake with pool', function (done, fail) {
             this.timeout(5000);
 
-            var client = new Client('127.0.0.1', 3000, logger);
+            var client = new Client('127.0.0.1', 3100, logger);
             var server = dnode(function (remote, connection) {
                 this.join = function (id, callback) {
                     callback(id);
@@ -53,7 +54,7 @@ describe('Client', function () {
                         done();
                     });
                 }
-            }).listen(3000);
+            }, {weak: false}).listen(3100);
 
             client.start();
 
@@ -72,7 +73,7 @@ describe('Client', function () {
                     ]
                 }
             };
-            var client = new Client('127.0.0.1', 3000, logger);
+            var client = new Client('127.0.0.1', 3100, logger);
             var server = dnode(function (remote, connection) {
                 this.join = function (id, callback) {
                     callback(id);
@@ -87,7 +88,7 @@ describe('Client', function () {
                 this.report = function () {
 
                 };
-            }).listen(3000);
+            }, {weak: false}).listen(3100);
 
             client.start();
 
@@ -106,7 +107,7 @@ describe('Client', function () {
                     ]
                 }
             };
-            var client = new Client('127.0.0.1', 3000, logger);
+            var client = new Client('127.0.0.1', 3100, logger);
             var server = dnode(function (remote, connection) {
                 this.join = function (id, callback) {
                     callback(id);
@@ -123,7 +124,7 @@ describe('Client', function () {
                 this.report = function (callback) {
                     callback();
                 };
-            }).listen(3000);
+            }, {weak: false}).listen(3100);
 
             client.start();
 

@@ -17,13 +17,13 @@
     },
     "homepage": "https://github.com/egorovpavel/worker",
     "dependencies": {
-        "dnode": "^1.2.0",
+        "dnode": "1.2.0",
         "dockerode": "~1.2.8",
-        "rpc-stream": "^2.0.0",
         "underscore": "^1.6.0",
         "winston": "^0.7.3"
     },
     "devDependencies": {
+        "blanket": "^1.1.6",
         "mocha": "~1.18.2",
         "should": "^3.2.0-beta1"
     }
