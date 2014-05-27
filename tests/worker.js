@@ -1,6 +1,18 @@
 var should = require('should');
 var Worker = require('../lib/worker.js');
 describe('Worker', function() {
+    describe('Should create build script from array', function () {
+        it('Creates valid shell script from array', function (done, fail) {
+            var worker = new Worker();
+            var commands = [
+                "echo 'Hello world'",
+            ];
+            var expected = "(echo '$ echo 'Hello world''; echo 'Hello world' || exit 1;)";
+            var script = worker.prepare(commands);
+            script.should.be.equal(expected);
+            done();
+        });
+    });
 	describe('Should execute build inside container', function() {
 		it('Exit with status code 0 for successful build', function(done, fail) {
 			this.timeout(5000);
