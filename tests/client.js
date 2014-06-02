@@ -8,7 +8,7 @@ var logger = require('../lib/logger.js')();
 describe('Client', function () {
     describe('Connection', function () {
         it('Should be established', function (done, fail) {
-            this.timeout(5000);
+            this.timeout(50000);
 
             var client = new Client('127.0.0.1', 3100, logger);
 
@@ -24,7 +24,7 @@ describe('Client', function () {
 
         });
         it('Emits "disconnect" event on failure', function (done, fail) {
-            this.timeout(5000);
+            this.timeout(50000);
 
             var client = new Client('127.0.0.1', 3100, logger);
             client.onDisconnect(function () {
@@ -37,7 +37,7 @@ describe('Client', function () {
 
     describe('After established connection', function () {
         it('Should perform hand shake with pool', function (done, fail) {
-            this.timeout(5000);
+            this.timeout(50000);
 
             var client = new Client('127.0.0.1', 3100, logger);
             var server = dnode(function (remote, connection) {
@@ -62,6 +62,11 @@ describe('Client', function () {
                     language: "JS",
                     timeout: 5000
                 },
+                reposity : {
+                    uri : "https://github.com/jashkenas/underscore.git",
+                    name :  "underscore",
+                },
+                skipSetup : true,
                 payload: {
                     commands: [
                         "echo 'Hello world'"
@@ -89,13 +94,18 @@ describe('Client', function () {
 
         });
         it('Should not accept job in shutdown state', function (done, fail) {
-            this.timeout(5000);
+            this.timeout(50000);
 
             var item = {
                 config: {
                     language: "JS",
                     timeout: 5000
                 },
+                reposity : {
+                    uri : "https://github.com/jashkenas/underscore.git",
+                    name :  "underscore",
+                },
+                skipSetup : true,
                 payload: {
                     commands: [
                         "sleep 3"
