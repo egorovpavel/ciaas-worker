@@ -1,11 +1,12 @@
 'use strict';
 var Client = require('./lib/client.js');
 var Logger = require('winston');
-var client = new Client('127.0.0.1', 3100, Logger);
-client.onDisconnect(function () {
-    setTimeout(function () {
-        client.start();
-    }, 3100);
-    Logger.info('Client failed to connect, next attempt will in 3 seconds');
+var config = require('./config.json')[process.env.NODE_ENV || 'development'];
+var client = new Client(config.host, config.port, Logger);
+
+process.on('SIGINT', function () {
+    Logger.warn("STOPED");
+    client.close();
 });
-client.start();
+
+Logger.info("STARTED");
