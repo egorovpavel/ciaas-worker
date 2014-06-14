@@ -27,6 +27,7 @@
         "bull": "^0.1.6",
         "dockerode": "~1.2.8",
         "lodash": "^2.4.1",
+        "redis": "^0.10.3",
         "winston": "^0.7.3"
     },
     "devDependencies": {

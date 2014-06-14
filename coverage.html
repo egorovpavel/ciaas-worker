@@ -374,7 +374,7 @@ code .number {
         <li><a href="#overview">overview</a></li>
         <li><span class="cov high">100</span><a href="#/vagrant/platform/worker/lib/client.js"><span class="dirname">/vagrant/platform/worker/lib/</span><span
                 class="basename">client.js</span></a></li>
-        <li><span class="cov high">97</span><a href="#/vagrant/platform/worker/lib/item_container.js"><span
+        <li><span class="cov high">100</span><a href="#/vagrant/platform/worker/lib/item_container.js"><span
                 class="dirname">/vagrant/platform/worker/lib/</span><span class="basename">item_container.js</span></a>
         </li>
         <li><span class="cov high">100</span><a href="#/vagrant/platform/worker/lib/logger.js"><span class="dirname">/vagrant/platform/worker/lib/</span><span
@@ -383,10 +383,10 @@ code .number {
                 class="basename">worker.js</span></a></li>
         <a id="logo" href="http://visionmedia.github.io/mocha/">m</a></div>
     <div id="stats" class="high">
-        <div class="percentage">95%</div>
-        <div class="sloc">113</div>
-        <div class="hits">108</div>
-        <div class="misses">5</div>
+        <div class="percentage">96%</div>
+        <div class="sloc">115</div>
+        <div class="hits">111</div>
+        <div class="misses">4</div>
     </div>
     <div id="files">
         <div class="file"><h2 id="/vagrant/platform/worker/lib/client.js">/vagrant/platform/worker/lib/client.js</h2>
@@ -459,12 +459,12 @@ code .number {
                 <tr class="hit">
                     <td class="line">11</td>
                     <td class="hits">3</td>
-                    <td class="source"> var buildQueue = Queue(&quot;build&quot;, port,host);</td>
+                    <td class="source"> var buildQueue = Queue(&quot;build&quot;, port, host);</td>
                 </tr>
                 <tr class="hit">
                     <td class="line">12</td>
                     <td class="hits">3</td>
-                    <td class="source"> var resultQueue = Queue(&quot;result&quot;, port,host);</td>
+                    <td class="source"> var resultQueue = Queue(&quot;result&quot;, port, host);</td>
                 </tr>
                 <tr>
                     <td class="line">13</td>
@@ -544,7 +544,7 @@ code .number {
                 <tr class="hit">
                     <td class="line">28</td>
                     <td class="hits">2</td>
-                    <td class="source"> emitter.emit('complete',result);</td>
+                    <td class="source"> emitter.emit('complete', result);</td>
                 </tr>
                 <tr class="hit">
                     <td class="line">29</td>
@@ -589,7 +589,7 @@ code .number {
                 <tr>
                     <td class="line">37</td>
                     <td class="hits"></td>
-                    <td class="source"> close : function(){</td>
+                    <td class="source"> close: function () {</td>
                 </tr>
                 <tr class="hit">
                     <td class="line">38</td>
@@ -609,7 +609,7 @@ code .number {
                 <tr>
                     <td class="line">41</td>
                     <td class="hits"></td>
-                    <td class="source"> complete : function(callback){</td>
+                    <td class="source"> complete: function (callback) {</td>
                 </tr>
                 <tr class="hit">
                     <td class="line">42</td>
@@ -624,7 +624,7 @@ code .number {
                 <tr>
                     <td class="line">44</td>
                     <td class="hits"></td>
-                    <td class="source"> progress : function(callback){</td>
+                    <td class="source"> progress: function (callback) {</td>
                 </tr>
                 <tr class="hit">
                     <td class="line">45</td>
@@ -659,7 +659,7 @@ code .number {
                 <tr class="hit">
                     <td class="line">51</td>
                     <td class="hits">1</td>
-                    <td class="source">util.inherits(Client,EventEmitter);</td>
+                    <td class="source">util.inherits(Client, EventEmitter);</td>
                 </tr>
                 <tr>
                     <td class="line">52</td>
@@ -678,10 +678,10 @@ code .number {
             /vagrant/platform/worker/lib/item_container.js</h2>
 
             <div id="stats" class="high">
-                <div class="percentage">97%</div>
-                <div class="sloc">36</div>
-                <div class="hits">35</div>
-                <div class="misses">1</div>
+                <div class="percentage">100%</div>
+                <div class="sloc">38</div>
+                <div class="hits">38</div>
+                <div class="misses">0</div>
             </div>
             <table id="source">
                 <thead>
@@ -692,254 +692,252 @@ code .number {
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td class="line">1</td>
-                    <td class="hits"></td>
-                    <td class="source"></td>
-                </tr>
                 <tr class="hit">
-                    <td class="line">2</td>
+                    <td class="line">1</td>
                     <td class="hits">1</td>
                     <td class="source">&quot;use strict&quot;;</td>
                 </tr>
                 <tr class="hit">
-                    <td class="line">3</td>
+                    <td class="line">2</td>
                     <td class="hits">1</td>
                     <td class="source">var stream = require(&quot;stream&quot;);</td>
                 </tr>
                 <tr class="hit">
-                    <td class="line">4</td>
+                    <td class="line">3</td>
                     <td class="hits">1</td>
                     <td class="source">var Writable = stream.Writable;</td>
                 </tr>
                 <tr class="hit">
-                    <td class="line">5</td>
+                    <td class="line">4</td>
                     <td class="hits">1</td>
                     <td class="source">var _ = require('lodash');</td>
                 </tr>
                 <tr class="hit">
-                    <td class="line">6</td>
+                    <td class="line">5</td>
                     <td class="hits">1</td>
                     <td class="source">var util = require('util');</td>
                 </tr>
                 <tr>
-                    <td class="line">7</td>
+                    <td class="line">6</td>
                     <td class="hits"></td>
                     <td class="source"></td>
                 </tr>
                 <tr class="hit">
-                    <td class="line">8</td>
+                    <td class="line">7</td>
                     <td class="hits">1</td>
                     <td class="source">var Container = function (item, callback, options) {</td>
                 </tr>
                 <tr class="hit">
-                    <td class="line">9</td>
+                    <td class="line">8</td>
                     <td class="hits">5</td>
                     <td class="source"> this.callback = callback;</td>
                 </tr>
                 <tr class="hit">
-                    <td class="line">10</td>
+                    <td class="line">9</td>
                     <td class="hits">5</td>
                     <td class="source"> this.id = item.id;</td>
                 </tr>
                 <tr class="hit">
-                    <td class="line">11</td>
+                    <td class="line">10</td>
                     <td class="hits">5</td>
                     <td class="source"> this.lineNum = 0;</td>
                 </tr>
                 <tr class="hit">
-                    <td class="line">12</td>
+                    <td class="line">11</td>
                     <td class="hits">5</td>
                     <td class="source"> this.item = item;</td>
                 </tr>
                 <tr class="hit">
-                    <td class="line">13</td>
+                    <td class="line">12</td>
                     <td class="hits">5</td>
                     <td class="source"> this.lineBuffer = &quot;&quot;;</td>
                 </tr>
                 <tr class="hit">
-                    <td class="line">14</td>
+                    <td class="line">13</td>
                     <td class="hits">5</td>
                     <td class="source"> options = !options ? {} : options;</td>
                 </tr>
                 <tr class="hit">
-                    <td class="line">15</td>
+                    <td class="line">14</td>
                     <td class="hits">5</td>
                     <td class="source"> options.objectMode = true;</td>
                 </tr>
                 <tr class="hit">
-                    <td class="line">16</td>
+                    <td class="line">15</td>
                     <td class="hits">5</td>
                     <td class="source"> Writable.call(this, options);</td>
                 </tr>
                 <tr>
-                    <td class="line">17</td>
+                    <td class="line">16</td>
                     <td class="hits"></td>
                     <td class="source">};</td>
                 </tr>
                 <tr>
-                    <td class="line">18</td>
+                    <td class="line">17</td>
                     <td class="hits"></td>
                     <td class="source"></td>
                 </tr>
                 <tr class="hit">
-                    <td class="line">19</td>
+                    <td class="line">18</td>
                     <td class="hits">1</td>
                     <td class="source">util.inherits(Container, Writable);</td>
                 </tr>
                 <tr>
-                    <td class="line">20</td>
+                    <td class="line">19</td>
                     <td class="hits"></td>
                     <td class="source"></td>
                 </tr>
                 <tr class="hit">
-                    <td class="line">21</td>
+                    <td class="line">20</td>
                     <td class="hits">1</td>
-                    <td class="source">Container.prototype.parse = function(data){</td>
+                    <td class="source">Container.prototype.parse = function (data) {</td>
                 </tr>
                 <tr>
-                    <td class="line">22</td>
+                    <td class="line">21</td>
                     <td class="hits"></td>
                     <td class="source"></td>
                 </tr>
                 <tr class="hit">
-                    <td class="line">23</td>
-                    <td class="hits">6</td>
+                    <td class="line">22</td>
+                    <td class="hits">10</td>
                     <td class="source"> var chars = [</td>
+                </tr>
+                <tr>
+                    <td class="line">23</td>
+                    <td class="hits"></td>
+                    <td class="source"> {from: /\r\r/g, to: &quot;[#SPLIT#][#RETURN#]\r&quot;},</td>
                 </tr>
                 <tr>
                     <td class="line">24</td>
                     <td class="hits"></td>
-                    <td class="source"> {from : /\r\r/g, to :&quot;[#SPLIT#][#RETURN#]\r&quot;},</td>
+                    <td class="source"> {from: /\r\n/g, to: &quot;[#SPLIT#]&quot;},</td>
                 </tr>
                 <tr>
                     <td class="line">25</td>
                     <td class="hits"></td>
-                    <td class="source"> {from : /\r\n/g, to :&quot;[#SPLIT#]&quot;},</td>
+                    <td class="source"> {from: /\n/g, to: &quot;[#SPLIT#]&quot;},</td>
                 </tr>
                 <tr>
                     <td class="line">26</td>
                     <td class="hits"></td>
-                    <td class="source"> {from : /\n/g, to :&quot;[#SPLIT#]&quot;},</td>
+                    <td class="source"> {from: /\r/g, to: &quot;[#RETURN#]\r&quot;},</td>
                 </tr>
                 <tr>
                     <td class="line">27</td>
                     <td class="hits"></td>
-                    <td class="source"> {from : /\r/g, to :&quot;[#RETURN#]\r&quot;},</td>
+                    <td class="source"> {from: /\r\s/g, to: &quot; &quot;}</td>
                 </tr>
                 <tr>
                     <td class="line">28</td>
                     <td class="hits"></td>
-                    <td class="source"> {from : /\r\s/g, to :&quot; &quot;}</td>
+                    <td class="source"> ];</td>
                 </tr>
                 <tr>
                     <td class="line">29</td>
                     <td class="hits"></td>
-                    <td class="source"> ];</td>
-                </tr>
-                <tr>
-                    <td class="line">30</td>
-                    <td class="hits"></td>
                     <td class="source"></td>
                 </tr>
                 <tr class="hit">
-                    <td class="line">31</td>
-                    <td class="hits">6</td>
+                    <td class="line">30</td>
+                    <td class="hits">10</td>
                     <td class="source"> var result = data.toString();</td>
                 </tr>
                 <tr class="hit">
-                    <td class="line">32</td>
-                    <td class="hits">6</td>
-                    <td class="source"> _.each(chars, function(val, idx){</td>
+                    <td class="line">31</td>
+                    <td class="hits">10</td>
+                    <td class="source"> _.each(chars, function (val, idx) {</td>
                 </tr>
                 <tr class="hit">
-                    <td class="line">33</td>
-                    <td class="hits">30</td>
+                    <td class="line">32</td>
+                    <td class="hits">50</td>
                     <td class="source"> result = result.replace(val.from, val.to);</td>
                 </tr>
                 <tr>
-                    <td class="line">34</td>
+                    <td class="line">33</td>
                     <td class="hits"></td>
                     <td class="source"> });</td>
                 </tr>
                 <tr>
-                    <td class="line">35</td>
+                    <td class="line">34</td>
                     <td class="hits"></td>
                     <td class="source"></td>
                 </tr>
                 <tr class="hit">
-                    <td class="line">36</td>
-                    <td class="hits">6</td>
+                    <td class="line">35</td>
+                    <td class="hits">10</td>
                     <td class="source"> this.lineBuffer += result;</td>
                 </tr>
                 <tr>
-                    <td class="line">37</td>
+                    <td class="line">36</td>
                     <td class="hits"></td>
                     <td class="source"></td>
                 </tr>
                 <tr class="hit">
-                    <td class="line">38</td>
-                    <td class="hits">6</td>
-                    <td class="source"> if(/\[#SPLIT#\]/.test(result)){</td>
+                    <td class="line">37</td>
+                    <td class="hits">10</td>
+                    <td class="source"> if (/\[#SPLIT#\]/.test(result)) {</td>
                 </tr>
                 <tr class="hit">
-                    <td class="line">39</td>
-                    <td class="hits">6</td>
+                    <td class="line">38</td>
+                    <td class="hits">7</td>
                     <td class="source"> var lines = [];</td>
                 </tr>
                 <tr class="hit">
-                    <td class="line">40</td>
-                    <td class="hits">21</td>
-                    <td class="source"> var result = this.lineBuffer.split(&quot;[#SPLIT#]&quot;).filter(function(e){return
-                        e});
+                    <td class="line">39</td>
+                    <td class="hits">7</td>
+                    <td class="source"> var result = this.lineBuffer.split(&quot;[#SPLIT#]&quot;).filter(function (e)
+                        {
                     </td>
                 </tr>
                 <tr class="hit">
+                    <td class="line">40</td>
+                    <td class="hits">16</td>
+                    <td class="source"> return e</td>
+                </tr>
+                <tr>
                     <td class="line">41</td>
-                    <td class="hits">6</td>
-                    <td class="source"> _.each(result, function(l){</td>
+                    <td class="hits"></td>
+                    <td class="source"> });</td>
                 </tr>
                 <tr class="hit">
                     <td class="line">42</td>
+                    <td class="hits">7</td>
+                    <td class="source"> _.each(result, function (l) {</td>
+                </tr>
+                <tr class="hit">
+                    <td class="line">43</td>
                     <td class="hits">9</td>
                     <td class="source"> lines = lines.concat(l.split(&quot;[#RETURN#]&quot;));</td>
                 </tr>
                 <tr>
-                    <td class="line">43</td>
-                    <td class="hits"></td>
-                    <td class="source"> },this);</td>
-                </tr>
-                <tr class="hit">
                     <td class="line">44</td>
-                    <td class="hits">6</td>
-                    <td class="source"> this.lineBuffer = &quot;&quot;;</td>
+                    <td class="hits"></td>
+                    <td class="source"> }, this);</td>
                 </tr>
                 <tr class="hit">
                     <td class="line">45</td>
-                    <td class="hits">15</td>
-                    <td class="source"> return lines.filter(function(e){return e != &quot;\r&quot; &amp;&amp; e !=
-                        &quot;&quot;});
-                    </td>
+                    <td class="hits">7</td>
+                    <td class="source"> this.lineBuffer = &quot;&quot;;</td>
                 </tr>
-                <tr>
+                <tr class="hit">
                     <td class="line">46</td>
-                    <td class="hits"></td>
-                    <td class="source"> }</td>
+                    <td class="hits">7</td>
+                    <td class="source"> return lines.filter(function (e) {</td>
+                </tr>
+                <tr class="hit">
+                    <td class="line">47</td>
+                    <td class="hits">9</td>
+                    <td class="source"> return e != &quot;\r&quot; &amp;&amp; e != &quot;&quot;</td>
                 </tr>
                 <tr>
-                    <td class="line">47</td>
-                    <td class="hits"></td>
-                    <td class="source"></td>
-                </tr>
-                <tr class="miss">
                     <td class="line">48</td>
-                    <td class="hits">0</td>
-                    <td class="source"> return null;</td>
+                    <td class="hits"></td>
+                    <td class="source"> });</td>
                 </tr>
                 <tr>
                     <td class="line">49</td>
                     <td class="hits"></td>
-                    <td class="source">};</td>
+                    <td class="source"> }</td>
                 </tr>
                 <tr>
                     <td class="line">50</td>
@@ -948,71 +946,86 @@ code .number {
                 </tr>
                 <tr class="hit">
                     <td class="line">51</td>
-                    <td class="hits">1</td>
-                    <td class="source">Container.prototype._write = function (chunk, enc, cb) {</td>
+                    <td class="hits">3</td>
+                    <td class="source"> return null;</td>
                 </tr>
-                <tr class="hit">
+                <tr>
                     <td class="line">52</td>
-                    <td class="hits">6</td>
-                    <td class="source"> var lines = this.parse(chunk);</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">53</td>
-                    <td class="hits">6</td>
-                    <td class="source"> if (this.callback &amp;&amp; lines) {</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">54</td>
-                    <td class="hits">2</td>
-                    <td class="source"> _.each(lines, function(l){</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">55</td>
-                    <td class="hits">4</td>
-                    <td class="source"> this.callback({</td>
-                </tr>
-                <tr>
-                    <td class="line">56</td>
-                    <td class="hits"></td>
-                    <td class="source"> id: this.id,</td>
-                </tr>
-                <tr>
-                    <td class="line">57</td>
-                    <td class="hits"></td>
-                    <td class="source"> data: l</td>
-                </tr>
-                <tr>
-                    <td class="line">58</td>
-                    <td class="hits"></td>
-                    <td class="source"> });</td>
-                </tr>
-                <tr>
-                    <td class="line">59</td>
-                    <td class="hits"></td>
-                    <td class="source"> },this);</td>
-                </tr>
-                <tr>
-                    <td class="line">60</td>
-                    <td class="hits"></td>
-                    <td class="source"> }</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">61</td>
-                    <td class="hits">6</td>
-                    <td class="source"> cb();</td>
-                </tr>
-                <tr>
-                    <td class="line">62</td>
                     <td class="hits"></td>
                     <td class="source">};</td>
                 </tr>
                 <tr>
-                    <td class="line">63</td>
+                    <td class="line">53</td>
                     <td class="hits"></td>
                     <td class="source"></td>
                 </tr>
                 <tr class="hit">
+                    <td class="line">54</td>
+                    <td class="hits">1</td>
+                    <td class="source">Container.prototype._write = function (chunk, enc, cb) {</td>
+                </tr>
+                <tr class="hit">
+                    <td class="line">55</td>
+                    <td class="hits">10</td>
+                    <td class="source"> var lines = this.parse(chunk);</td>
+                </tr>
+                <tr class="hit">
+                    <td class="line">56</td>
+                    <td class="hits">10</td>
+                    <td class="source"> if (this.callback &amp;&amp; lines) {</td>
+                </tr>
+                <tr class="hit">
+                    <td class="line">57</td>
+                    <td class="hits">3</td>
+                    <td class="source"> _.each(lines, function (l) {</td>
+                </tr>
+                <tr class="hit">
+                    <td class="line">58</td>
+                    <td class="hits">4</td>
+                    <td class="source"> this.callback({</td>
+                </tr>
+                <tr>
+                    <td class="line">59</td>
+                    <td class="hits"></td>
+                    <td class="source"> id: this.id,</td>
+                </tr>
+                <tr>
+                    <td class="line">60</td>
+                    <td class="hits"></td>
+                    <td class="source"> data: l</td>
+                </tr>
+                <tr>
+                    <td class="line">61</td>
+                    <td class="hits"></td>
+                    <td class="source"> });</td>
+                </tr>
+                <tr>
+                    <td class="line">62</td>
+                    <td class="hits"></td>
+                    <td class="source"> }, this);</td>
+                </tr>
+                <tr>
+                    <td class="line">63</td>
+                    <td class="hits"></td>
+                    <td class="source"> }</td>
+                </tr>
+                <tr class="hit">
                     <td class="line">64</td>
+                    <td class="hits">10</td>
+                    <td class="source"> cb();</td>
+                </tr>
+                <tr>
+                    <td class="line">65</td>
+                    <td class="hits"></td>
+                    <td class="source">};</td>
+                </tr>
+                <tr>
+                    <td class="line">66</td>
+                    <td class="hits"></td>
+                    <td class="source"></td>
+                </tr>
+                <tr class="hit">
+                    <td class="line">67</td>
                     <td class="hits">1</td>
                     <td class="source">module.exports = Container;</td>
                 </tr>
