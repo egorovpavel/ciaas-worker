@@ -4,7 +4,7 @@
         "port": "6379"
     },
     "production": {
-        "host": "127.0.0.1",
+        "host": "ci.u43szi.0001.euw1.cache.amazonaws.com",
         "port": "6379"
     }
 }
