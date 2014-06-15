@@ -1,3 +1,7 @@
+{ id: undefined, line: 0, data: '$ echo Hello world' }
+{ id: undefined, line: 1, data: 'Hello world' }
+{ id: undefined, line: 0, data: '$ echo Hello world' }
+{ id: undefined, line: 1, data: 'Hello world' }
 <!DOCTYPE html>
 <html>
 <head><title>Coverage</title>
@@ -384,8 +388,8 @@ code .number {
         <a id="logo" href="http://visionmedia.github.io/mocha/">m</a></div>
     <div id="stats" class="high">
         <div class="percentage">96%</div>
-        <div class="sloc">115</div>
-        <div class="hits">111</div>
+        <div class="sloc">128</div>
+        <div class="hits">124</div>
         <div class="misses">4</div>
     </div>
     <div id="files">
@@ -393,8 +397,8 @@ code .number {
 
             <div id="stats" class="high">
                 <div class="percentage">100%</div>
-                <div class="sloc">28</div>
-                <div class="hits">28</div>
+                <div class="sloc">41</div>
+                <div class="hits">41</div>
                 <div class="misses">0</div>
             </div>
             <table id="source">
@@ -424,250 +428,330 @@ code .number {
                 <tr>
                     <td class="line">4</td>
                     <td class="hits"></td>
-                    <td class="source"> util = require('util'),</td>
+                    <td class="source"> redis = require('redis'),</td>
                 </tr>
                 <tr>
                     <td class="line">5</td>
                     <td class="hits"></td>
-                    <td class="source"> Worker = require('./worker.js');</td>
+                    <td class="source"> util = require('util'),</td>
                 </tr>
                 <tr>
                     <td class="line">6</td>
                     <td class="hits"></td>
+                    <td class="source"> Worker = require('./worker.js');</td>
+                </tr>
+                <tr>
+                    <td class="line">7</td>
+                    <td class="hits"></td>
                     <td class="source"></td>
                 </tr>
                 <tr class="hit">
-                    <td class="line">7</td>
+                    <td class="line">8</td>
                     <td class="hits">1</td>
                     <td class="source">var Client = function (host, port, log) {</td>
                 </tr>
                 <tr class="hit">
-                    <td class="line">8</td>
+                    <td class="line">9</td>
                     <td class="hits">3</td>
                     <td class="source"> var worker = new Worker();</td>
                 </tr>
                 <tr class="hit">
-                    <td class="line">9</td>
+                    <td class="line">10</td>
                     <td class="hits">3</td>
                     <td class="source"> var log = log || console;</td>
                 </tr>
                 <tr class="hit">
-                    <td class="line">10</td>
+                    <td class="line">11</td>
                     <td class="hits">3</td>
                     <td class="source"> var emitter = this;</td>
                 </tr>
                 <tr class="hit">
-                    <td class="line">11</td>
+                    <td class="line">12</td>
                     <td class="hits">3</td>
                     <td class="source"> var buildQueue = Queue(&quot;build&quot;, port, host);</td>
                 </tr>
                 <tr class="hit">
-                    <td class="line">12</td>
+                    <td class="line">13</td>
                     <td class="hits">3</td>
                     <td class="source"> var resultQueue = Queue(&quot;result&quot;, port, host);</td>
-                </tr>
-                <tr>
-                    <td class="line">13</td>
-                    <td class="hits"></td>
-                    <td class="source"></td>
                 </tr>
                 <tr class="hit">
                     <td class="line">14</td>
                     <td class="hits">3</td>
-                    <td class="source"> var reportHandler = function (data) {</td>
+                    <td class="source"> var reportChannel = redis.createClient();</td>
                 </tr>
                 <tr class="hit">
                     <td class="line">15</td>
-                    <td class="hits">4</td>
-                    <td class="source"> emitter.emit(&quot;progress&quot;, data);</td>
+                    <td class="hits">3</td>
+                    <td class="source"> var report = redis.createClient();</td>
                 </tr>
                 <tr>
                     <td class="line">16</td>
                     <td class="hits"></td>
-                    <td class="source"> };</td>
-                </tr>
-                <tr>
-                    <td class="line">17</td>
-                    <td class="hits"></td>
                     <td class="source"></td>
+                </tr>
+                <tr class="hit">
+                    <td class="line">17</td>
+                    <td class="hits">3</td>
+                    <td class="source"> var getKey = function(id){</td>
                 </tr>
                 <tr class="hit">
                     <td class="line">18</td>
-                    <td class="hits">3</td>
-                    <td class="source"> var resultHandler = function (result, complete) {</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">19</td>
-                    <td class="hits">2</td>
-                    <td class="source"> complete();</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">20</td>
-                    <td class="hits">2</td>
-                    <td class="source"> resultQueue.add(result);</td>
+                    <td class="hits">4</td>
+                    <td class="source"> return &quot;report:build:&quot; + id;</td>
                 </tr>
                 <tr>
-                    <td class="line">21</td>
+                    <td class="line">19</td>
                     <td class="hits"></td>
                     <td class="source"> };</td>
                 </tr>
                 <tr>
-                    <td class="line">22</td>
+                    <td class="line">20</td>
                     <td class="hits"></td>
                     <td class="source"></td>
                 </tr>
                 <tr class="hit">
-                    <td class="line">23</td>
+                    <td class="line">21</td>
                     <td class="hits">3</td>
-                    <td class="source"> var buildHandler = function (job, complete) {</td>
+                    <td class="source"> var reportHandler = function (data, job) {</td>
+                </tr>
+                <tr class="hit">
+                    <td class="line">22</td>
+                    <td class="hits">4</td>
+                    <td class="source"> var channel = &quot;channel_&quot; + data.id;</td>
+                </tr>
+                <tr class="hit">
+                    <td class="line">23</td>
+                    <td class="hits">4</td>
+                    <td class="source"> var b = new Buffer(data.data);</td>
                 </tr>
                 <tr class="hit">
                     <td class="line">24</td>
-                    <td class="hits">2</td>
-                    <td class="source"> log.info(&quot;job processing&quot;);</td>
+                    <td class="hits">4</td>
+                    <td class="source"> emitter.emit(&quot;progress&quot;, data);</td>
                 </tr>
                 <tr class="hit">
                     <td class="line">25</td>
-                    <td class="hits">2</td>
-                    <td class="source"> worker.put(job.data, function (data) {</td>
+                    <td class="hits">4</td>
+                    <td class="source"> console.log(data);</td>
                 </tr>
                 <tr class="hit">
                     <td class="line">26</td>
                     <td class="hits">4</td>
-                    <td class="source"> reportHandler(data)</td>
+                    <td class="source"> report.rpush(getKey(data.id),b);</td>
                 </tr>
-                <tr>
+                <tr class="hit">
                     <td class="line">27</td>
-                    <td class="hits"></td>
-                    <td class="source"> }).on('complete', function (result) {</td>
+                    <td class="hits">4</td>
+                    <td class="source"> reportChannel.publish(channel, JSON.stringify(data));</td>
                 </tr>
-                <tr class="hit">
+                <tr>
                     <td class="line">28</td>
-                    <td class="hits">2</td>
-                    <td class="source"> emitter.emit('complete', result);</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">29</td>
-                    <td class="hits">2</td>
-                    <td class="source"> log.info(&quot;job procesed&quot;);</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">30</td>
-                    <td class="hits">2</td>
-                    <td class="source"> resultHandler(result, complete);</td>
-                </tr>
-                <tr>
-                    <td class="line">31</td>
-                    <td class="hits"></td>
-                    <td class="source"> });</td>
-                </tr>
-                <tr>
-                    <td class="line">32</td>
                     <td class="hits"></td>
                     <td class="source"> };</td>
                 </tr>
                 <tr>
-                    <td class="line">33</td>
+                    <td class="line">29</td>
                     <td class="hits"></td>
                     <td class="source"></td>
                 </tr>
                 <tr class="hit">
-                    <td class="line">34</td>
+                    <td class="line">30</td>
                     <td class="hits">3</td>
-                    <td class="source"> buildQueue.process(buildHandler);</td>
+                    <td class="source"> var resultHandler = function (result, complete) {</td>
+                </tr>
+                <tr class="hit">
+                    <td class="line">31</td>
+                    <td class="hits">2</td>
+                    <td class="source"> complete();</td>
+                </tr>
+                <tr class="hit">
+                    <td class="line">32</td>
+                    <td class="hits">2</td>
+                    <td class="source"> resultQueue.add(result);</td>
                 </tr>
                 <tr>
-                    <td class="line">35</td>
+                    <td class="line">33</td>
+                    <td class="hits"></td>
+                    <td class="source"> };</td>
+                </tr>
+                <tr>
+                    <td class="line">34</td>
                     <td class="hits"></td>
                     <td class="source"></td>
+                </tr>
+                <tr class="hit">
+                    <td class="line">35</td>
+                    <td class="hits">3</td>
+                    <td class="source"> var buildHandler = function (job, complete) {</td>
                 </tr>
                 <tr class="hit">
                     <td class="line">36</td>
-                    <td class="hits">3</td>
-                    <td class="source"> return {</td>
+                    <td class="hits">2</td>
+                    <td class="source"> log.info(&quot;job processing&quot;);</td>
                 </tr>
-                <tr>
+                <tr class="hit">
                     <td class="line">37</td>
-                    <td class="hits"></td>
-                    <td class="source"> close: function () {</td>
+                    <td class="hits">2</td>
+                    <td class="source"> worker.put(job.data, function (data) {</td>
                 </tr>
                 <tr class="hit">
                     <td class="line">38</td>
-                    <td class="hits">3</td>
-                    <td class="source"> buildQueue.close();</td>
+                    <td class="hits">4</td>
+                    <td class="source"> job.data.output = [];</td>
                 </tr>
                 <tr class="hit">
                     <td class="line">39</td>
-                    <td class="hits">3</td>
-                    <td class="source"> resultQueue.close();</td>
+                    <td class="hits">4</td>
+                    <td class="source"> reportHandler(data, job.data)</td>
                 </tr>
                 <tr>
                     <td class="line">40</td>
                     <td class="hits"></td>
-                    <td class="source"> },</td>
+                    <td class="source"> }).on('complete', function (result) {</td>
                 </tr>
-                <tr>
+                <tr class="hit">
                     <td class="line">41</td>
-                    <td class="hits"></td>
-                    <td class="source"> complete: function (callback) {</td>
+                    <td class="hits">2</td>
+                    <td class="source"> job.data.status = result;</td>
                 </tr>
                 <tr class="hit">
                     <td class="line">42</td>
                     <td class="hits">2</td>
-                    <td class="source"> emitter.on('complete', callback);</td>
-                </tr>
-                <tr>
-                    <td class="line">43</td>
-                    <td class="hits"></td>
-                    <td class="source"> },</td>
-                </tr>
-                <tr>
-                    <td class="line">44</td>
-                    <td class="hits"></td>
-                    <td class="source"> progress: function (callback) {</td>
+                    <td class="source"> emitter.emit('complete', result);</td>
                 </tr>
                 <tr class="hit">
+                    <td class="line">43</td>
+                    <td class="hits">2</td>
+                    <td class="source"> log.info(&quot;job procesed&quot;);</td>
+                </tr>
+                <tr class="hit">
+                    <td class="line">44</td>
+                    <td class="hits">2</td>
+                    <td class="source"> resultHandler(job.data, complete);</td>
+                </tr>
+                <tr>
                     <td class="line">45</td>
-                    <td class="hits">1</td>
-                    <td class="source"> emitter.on('progress', callback);</td>
+                    <td class="hits"></td>
+                    <td class="source"> });</td>
                 </tr>
                 <tr>
                     <td class="line">46</td>
                     <td class="hits"></td>
-                    <td class="source"> }</td>
+                    <td class="source"> };</td>
                 </tr>
                 <tr>
                     <td class="line">47</td>
                     <td class="hits"></td>
-                    <td class="source"> }</td>
+                    <td class="source"></td>
                 </tr>
-                <tr>
+                <tr class="hit">
                     <td class="line">48</td>
-                    <td class="hits"></td>
-                    <td class="source">};</td>
+                    <td class="hits">3</td>
+                    <td class="source"> buildQueue.process(buildHandler);</td>
                 </tr>
                 <tr>
                     <td class="line">49</td>
                     <td class="hits"></td>
                     <td class="source"></td>
                 </tr>
-                <tr>
+                <tr class="hit">
                     <td class="line">50</td>
+                    <td class="hits">3</td>
+                    <td class="source"> return {</td>
+                </tr>
+                <tr>
+                    <td class="line">51</td>
+                    <td class="hits"></td>
+                    <td class="source"> close: function () {</td>
+                </tr>
+                <tr class="hit">
+                    <td class="line">52</td>
+                    <td class="hits">3</td>
+                    <td class="source"> buildQueue.close();</td>
+                </tr>
+                <tr class="hit">
+                    <td class="line">53</td>
+                    <td class="hits">3</td>
+                    <td class="source"> resultQueue.close();</td>
+                </tr>
+                <tr class="hit">
+                    <td class="line">54</td>
+                    <td class="hits">3</td>
+                    <td class="source"> reportChannel.end();</td>
+                </tr>
+                <tr class="hit">
+                    <td class="line">55</td>
+                    <td class="hits">3</td>
+                    <td class="source"> report.end();</td>
+                </tr>
+                <tr>
+                    <td class="line">56</td>
+                    <td class="hits"></td>
+                    <td class="source"> },</td>
+                </tr>
+                <tr>
+                    <td class="line">57</td>
+                    <td class="hits"></td>
+                    <td class="source"> complete: function (callback) {</td>
+                </tr>
+                <tr class="hit">
+                    <td class="line">58</td>
+                    <td class="hits">2</td>
+                    <td class="source"> emitter.on('complete', callback);</td>
+                </tr>
+                <tr>
+                    <td class="line">59</td>
+                    <td class="hits"></td>
+                    <td class="source"> },</td>
+                </tr>
+                <tr>
+                    <td class="line">60</td>
+                    <td class="hits"></td>
+                    <td class="source"> progress: function (callback) {</td>
+                </tr>
+                <tr class="hit">
+                    <td class="line">61</td>
+                    <td class="hits">1</td>
+                    <td class="source"> emitter.on('progress', callback);</td>
+                </tr>
+                <tr>
+                    <td class="line">62</td>
+                    <td class="hits"></td>
+                    <td class="source"> }</td>
+                </tr>
+                <tr>
+                    <td class="line">63</td>
+                    <td class="hits"></td>
+                    <td class="source"> }</td>
+                </tr>
+                <tr>
+                    <td class="line">64</td>
+                    <td class="hits"></td>
+                    <td class="source">};</td>
+                </tr>
+                <tr>
+                    <td class="line">65</td>
+                    <td class="hits"></td>
+                    <td class="source"></td>
+                </tr>
+                <tr>
+                    <td class="line">66</td>
                     <td class="hits"></td>
                     <td class="source"></td>
                 </tr>
                 <tr class="hit">
-                    <td class="line">51</td>
+                    <td class="line">67</td>
                     <td class="hits">1</td>
                     <td class="source">util.inherits(Client, EventEmitter);</td>
                 </tr>
                 <tr>
-                    <td class="line">52</td>
+                    <td class="line">68</td>
                     <td class="hits"></td>
                     <td class="source"></td>
                 </tr>
                 <tr class="hit">
-                    <td class="line">53</td>
+                    <td class="line">69</td>
                     <td class="hits">1</td>
                     <td class="source">module.exports = Client;</td>
                 </tr>
@@ -799,7 +883,7 @@ code .number {
                 </tr>
                 <tr class="hit">
                     <td class="line">22</td>
-                    <td class="hits">10</td>
+                    <td class="hits">6</td>
                     <td class="source"> var chars = [</td>
                 </tr>
                 <tr>
@@ -839,17 +923,17 @@ code .number {
                 </tr>
                 <tr class="hit">
                     <td class="line">30</td>
-                    <td class="hits">10</td>
+                    <td class="hits">6</td>
                     <td class="source"> var result = data.toString();</td>
                 </tr>
                 <tr class="hit">
                     <td class="line">31</td>
-                    <td class="hits">10</td>
+                    <td class="hits">6</td>
                     <td class="source"> _.each(chars, function (val, idx) {</td>
                 </tr>
                 <tr class="hit">
                     <td class="line">32</td>
-                    <td class="hits">50</td>
+                    <td class="hits">30</td>
                     <td class="source"> result = result.replace(val.from, val.to);</td>
                 </tr>
                 <tr>
@@ -864,7 +948,7 @@ code .number {
                 </tr>
                 <tr class="hit">
                     <td class="line">35</td>
-                    <td class="hits">10</td>
+                    <td class="hits">6</td>
                     <td class="source"> this.lineBuffer += result;</td>
                 </tr>
                 <tr>
@@ -874,24 +958,24 @@ code .number {
                 </tr>
                 <tr class="hit">
                     <td class="line">37</td>
-                    <td class="hits">10</td>
+                    <td class="hits">6</td>
                     <td class="source"> if (/\[#SPLIT#\]/.test(result)) {</td>
                 </tr>
                 <tr class="hit">
                     <td class="line">38</td>
-                    <td class="hits">7</td>
+                    <td class="hits">5</td>
                     <td class="source"> var lines = [];</td>
                 </tr>
                 <tr class="hit">
                     <td class="line">39</td>
-                    <td class="hits">7</td>
+                    <td class="hits">5</td>
                     <td class="source"> var result = this.lineBuffer.split(&quot;[#SPLIT#]&quot;).filter(function (e)
                         {
                     </td>
                 </tr>
                 <tr class="hit">
                     <td class="line">40</td>
-                    <td class="hits">16</td>
+                    <td class="hits">14</td>
                     <td class="source"> return e</td>
                 </tr>
                 <tr>
@@ -901,7 +985,7 @@ code .number {
                 </tr>
                 <tr class="hit">
                     <td class="line">42</td>
-                    <td class="hits">7</td>
+                    <td class="hits">5</td>
                     <td class="source"> _.each(result, function (l) {</td>
                 </tr>
                 <tr class="hit">
@@ -916,12 +1000,12 @@ code .number {
                 </tr>
                 <tr class="hit">
                     <td class="line">45</td>
-                    <td class="hits">7</td>
+                    <td class="hits">5</td>
                     <td class="source"> this.lineBuffer = &quot;&quot;;</td>
                 </tr>
                 <tr class="hit">
                     <td class="line">46</td>
-                    <td class="hits">7</td>
+                    <td class="hits">5</td>
                     <td class="source"> return lines.filter(function (e) {</td>
                 </tr>
                 <tr class="hit">
@@ -946,7 +1030,7 @@ code .number {
                 </tr>
                 <tr class="hit">
                     <td class="line">51</td>
-                    <td class="hits">3</td>
+                    <td class="hits">1</td>
                     <td class="source"> return null;</td>
                 </tr>
                 <tr>
@@ -966,17 +1050,17 @@ code .number {
                 </tr>
                 <tr class="hit">
                     <td class="line">55</td>
-                    <td class="hits">10</td>
+                    <td class="hits">6</td>
                     <td class="source"> var lines = this.parse(chunk);</td>
                 </tr>
                 <tr class="hit">
                     <td class="line">56</td>
-                    <td class="hits">10</td>
+                    <td class="hits">6</td>
                     <td class="source"> if (this.callback &amp;&amp; lines) {</td>
                 </tr>
                 <tr class="hit">
                     <td class="line">57</td>
-                    <td class="hits">3</td>
+                    <td class="hits">2</td>
                     <td class="source"> _.each(lines, function (l) {</td>
                 </tr>
                 <tr class="hit">
@@ -992,40 +1076,45 @@ code .number {
                 <tr>
                     <td class="line">60</td>
                     <td class="hits"></td>
-                    <td class="source"> data: l</td>
+                    <td class="source"> line: this.lineNum++,</td>
                 </tr>
                 <tr>
                     <td class="line">61</td>
                     <td class="hits"></td>
-                    <td class="source"> });</td>
+                    <td class="source"> data: l</td>
                 </tr>
                 <tr>
                     <td class="line">62</td>
                     <td class="hits"></td>
-                    <td class="source"> }, this);</td>
+                    <td class="source"> });</td>
                 </tr>
                 <tr>
                     <td class="line">63</td>
                     <td class="hits"></td>
+                    <td class="source"> }, this);</td>
+                </tr>
+                <tr>
+                    <td class="line">64</td>
+                    <td class="hits"></td>
                     <td class="source"> }</td>
                 </tr>
                 <tr class="hit">
-                    <td class="line">64</td>
-                    <td class="hits">10</td>
-                    <td class="source"> cb();</td>
-                </tr>
-                <tr>
                     <td class="line">65</td>
-                    <td class="hits"></td>
-                    <td class="source">};</td>
+                    <td class="hits">6</td>
+                    <td class="source"> cb();</td>
                 </tr>
                 <tr>
                     <td class="line">66</td>
                     <td class="hits"></td>
+                    <td class="source">};</td>
+                </tr>
+                <tr>
+                    <td class="line">67</td>
+                    <td class="hits"></td>
                     <td class="source"></td>
                 </tr>
                 <tr class="hit">
-                    <td class="line">67</td>
+                    <td class="line">68</td>
                     <td class="hits">1</td>
                     <td class="source">module.exports = Container;</td>
                 </tr>

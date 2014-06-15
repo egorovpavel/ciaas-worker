@@ -8,12 +8,12 @@ describe('Worker', function() {
             var data = {
             	reposity : {
 	                uri : "https://github.com/jashkenas/underscore.git",
-	                name :  "underscore",
+                    name: "underscore"
 	            },
 	            skipSetup : false,
 	            payload: {
 	                commands: [
-		                "echo 'Hello world'",
+                        "echo 'Hello world'"
 		            ]
 	            }
             };
@@ -35,11 +35,11 @@ describe('Worker', function() {
 				skipSetup : true,
             	reposity : {
 	                uri : "https://github.com/jashkenas/underscore.git",
-	                name :  "underscore",
+                    name: "underscore"
 	            },
 				payload: {
 					commands: [
-						"echo 'Hello world'",
+                        "echo 'Hello world'"
 					]
 				}
 			};
@@ -62,7 +62,7 @@ describe('Worker', function() {
 				},
             	reposity : {
 	                uri : "https://github.com/jashkenas/underscore.git",
-	                name :  "underscore",
+                    name: "underscore"
 	            },
 	            skipSetup : true,
 				payload: {
