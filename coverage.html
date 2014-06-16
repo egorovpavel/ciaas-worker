@@ -1,7 +1,3 @@
-{ id: undefined, line: 0, data: '$ echo Hello world' }
-{ id: undefined, line: 1, data: 'Hello world' }
-{ id: undefined, line: 0, data: '$ echo Hello world' }
-{ id: undefined, line: 1, data: 'Hello world' }
 <!DOCTYPE html>
 <html>
 <head><title>Coverage</title>
@@ -374,1328 +370,1918 @@ code .number {
 <body>
 <div id="coverage"><h1 id="overview">Coverage</h1>
 
-    <div id="menu">
-        <li><a href="#overview">overview</a></li>
-        <li><span class="cov high">100</span><a href="#/vagrant/platform/worker/lib/client.js"><span class="dirname">/vagrant/platform/worker/lib/</span><span
-                class="basename">client.js</span></a></li>
-        <li><span class="cov high">100</span><a href="#/vagrant/platform/worker/lib/item_container.js"><span
-                class="dirname">/vagrant/platform/worker/lib/</span><span class="basename">item_container.js</span></a>
-        </li>
-        <li><span class="cov high">100</span><a href="#/vagrant/platform/worker/lib/logger.js"><span class="dirname">/vagrant/platform/worker/lib/</span><span
-                class="basename">logger.js</span></a></li>
-        <li><span class="cov high">89</span><a href="#/vagrant/platform/worker/lib/worker.js"><span class="dirname">/vagrant/platform/worker/lib/</span><span
-                class="basename">worker.js</span></a></li>
-        <a id="logo" href="http://visionmedia.github.io/mocha/">m</a></div>
+<div id="menu">
+    <li><a href="#overview">overview</a></li>
+    <li><span class="cov high">100</span><a href="#/vagrant/platform/worker/lib/client.js"><span class="dirname">/vagrant/platform/worker/lib/</span><span
+            class="basename">client.js</span></a></li>
+    <li><span class="cov high">100</span><a href="#/vagrant/platform/worker/lib/item_container.js"><span
+            class="dirname">/vagrant/platform/worker/lib/</span><span class="basename">item_container.js</span></a>
+    </li>
+    <li><span class="cov high">100</span><a href="#/vagrant/platform/worker/lib/logger.js"><span class="dirname">/vagrant/platform/worker/lib/</span><span
+            class="basename">logger.js</span></a></li>
+    <li><span class="cov high">89</span><a href="#/vagrant/platform/worker/lib/worker.js"><span class="dirname">/vagrant/platform/worker/lib/</span><span
+            class="basename">worker.js</span></a></li>
+    <a id="logo" href="http://visionmedia.github.io/mocha/">m</a></div>
+<div id="stats" class="high">
+    <div class="percentage">96%</div>
+    <div class="sloc">131</div>
+    <div class="hits">127</div>
+    <div class="misses">4</div>
+</div>
+<div id="files">
+<div class="file"><h2 id="/vagrant/platform/worker/lib/client.js">/vagrant/platform/worker/lib/client.js</h2>
+
+<div id="stats" class="high">
+    <div class="percentage">100%</div>
+    <div class="sloc">44</div>
+    <div class="hits">44</div>
+    <div class="misses">0</div>
+</div>
+<table id="source">
+<thead>
+<tr>
+    <th>Line</th>
+    <th>Hits</th>
+    <th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="hit">
+    <td class="line">1</td>
+    <td class="hits">1</td>
+    <td class="source">'use strict';</td>
+</tr>
+<tr>
+    <td class="line">2</td>
+    <td class="hits"></td>
+    <td class="source">// Queue handler</td>
+</tr>
+<tr>
+    <td class="line">3</td>
+    <td class="hits"></td>
+    <td class="source">// =============</td>
+</tr>
+<tr>
+    <td class="line">4</td>
+    <td class="hits"></td>
+    <td class="source">//</td>
+</tr>
+<tr>
+    <td class="line">5</td>
+    <td class="hits"></td>
+    <td class="source">// TODO: describe dependencies</td>
+</tr>
+<tr>
+    <td class="line">6</td>
+    <td class="hits"></td>
+    <td class="source">//</td>
+</tr>
+<tr class="hit">
+    <td class="line">7</td>
+    <td class="hits">1</td>
+    <td class="source">var Queue = require('bull'),</td>
+</tr>
+<tr>
+    <td class="line">8</td>
+    <td class="hits"></td>
+    <td class="source"> EventEmitter = require('events').EventEmitter,</td>
+</tr>
+<tr>
+    <td class="line">9</td>
+    <td class="hits"></td>
+    <td class="source"> redis = require('redis'),</td>
+</tr>
+<tr>
+    <td class="line">10</td>
+    <td class="hits"></td>
+    <td class="source"> util = require('util'),</td>
+</tr>
+<tr>
+    <td class="line">11</td>
+    <td class="hits"></td>
+    <td class="source"> Worker = require('./worker.js');</td>
+</tr>
+<tr>
+    <td class="line">12</td>
+    <td class="hits"></td>
+    <td class="source"></td>
+</tr>
+<tr>
+    <td class="line">13</td>
+    <td class="hits"></td>
+    <td class="source">// The main purpose of `Client` object is to process the build queue and</td>
+</tr>
+<tr>
+    <td class="line">14</td>
+    <td class="hits"></td>
+    <td class="source">// report back to result queue and also to stream output to redis pub/sub
+        channel
+    </td>
+</tr>
+<tr>
+    <td class="line">15</td>
+    <td class="hits"></td>
+    <td class="source">//</td>
+</tr>
+<tr>
+    <td class="line">16</td>
+    <td class="hits"></td>
+    <td class="source">// It accepts `host` and `port` of redis server and logger which must be able
+        to
+    </td>
+</tr>
+<tr>
+    <td class="line">17</td>
+    <td class="hits"></td>
+    <td class="source">// respond to `info`, `warn`, `log` and `error`</td>
+</tr>
+<tr>
+    <td class="line">18</td>
+    <td class="hits"></td>
+    <td class="source">//</td>
+</tr>
+<tr>
+    <td class="line">19</td>
+    <td class="hits"></td>
+    <td class="source">// `Client` uses Revealing Module Pattern for expose simple public interface.
+    </td>
+</tr>
+<tr>
+    <td class="line">20</td>
+    <td class="hits"></td>
+    <td class="source">//</td>
+</tr>
+<tr class="hit">
+    <td class="line">21</td>
+    <td class="hits">1</td>
+    <td class="source">var Client = function (host, port, log) {</td>
+</tr>
+<tr>
+    <td class="line">22</td>
+    <td class="hits"></td>
+    <td class="source"> // Worker object</td>
+</tr>
+<tr class="hit">
+    <td class="line">23</td>
+    <td class="hits">3</td>
+    <td class="source"> var worker = new Worker();</td>
+</tr>
+<tr>
+    <td class="line">24</td>
+    <td class="hits"></td>
+    <td class="source"> // Logger object</td>
+</tr>
+<tr class="hit">
+    <td class="line">25</td>
+    <td class="hits">3</td>
+    <td class="source"> var log = log || console;</td>
+</tr>
+<tr>
+    <td class="line">26</td>
+    <td class="hits"></td>
+    <td class="source"> // Referring current instance as emitter</td>
+</tr>
+<tr class="hit">
+    <td class="line">27</td>
+    <td class="hits">3</td>
+    <td class="source"> var emitter = this;</td>
+</tr>
+<tr>
+    <td class="line">28</td>
+    <td class="hits"></td>
+    <td class="source"></td>
+</tr>
+<tr>
+    <td class="line">29</td>
+    <td class="hits"></td>
+    <td class="source"> // Build queue contains job order items</td>
+</tr>
+<tr class="hit">
+    <td class="line">30</td>
+    <td class="hits">3</td>
+    <td class="source"> var buildQueue = Queue(&quot;build&quot;, port, host);</td>
+</tr>
+<tr>
+    <td class="line">31</td>
+    <td class="hits"></td>
+    <td class="source"> // Result queue contains job results</td>
+</tr>
+<tr class="hit">
+    <td class="line">32</td>
+    <td class="hits">3</td>
+    <td class="source"> var resultQueue = Queue(&quot;result&quot;, port, host);</td>
+</tr>
+<tr>
+    <td class="line">33</td>
+    <td class="hits"></td>
+    <td class="source"></td>
+</tr>
+<tr>
+    <td class="line">34</td>
+    <td class="hits"></td>
+    <td class="source"> // Instance of redis used for streaming of output from container during build
+        execution
+    </td>
+</tr>
+<tr class="hit">
+    <td class="line">35</td>
+    <td class="hits">3</td>
+    <td class="source"> var reportChannel = redis.createClient();</td>
+</tr>
+<tr>
+    <td class="line">36</td>
+    <td class="hits"></td>
+    <td class="source"></td>
+</tr>
+<tr>
+    <td class="line">37</td>
+    <td class="hits"></td>
+    <td class="source"> // Instance of redis used for saving output to the redis list</td>
+</tr>
+<tr>
+    <td class="line">38</td>
+    <td class="hits"></td>
+    <td class="source"> // (we can not use instance reportChannel because once we switch to subscriber
+        mode we can't execute regular functions)
+    </td>
+</tr>
+<tr class="hit">
+    <td class="line">39</td>
+    <td class="hits">3</td>
+    <td class="source"> var report = redis.createClient();</td>
+</tr>
+<tr>
+    <td class="line">40</td>
+    <td class="hits"></td>
+    <td class="source"></td>
+</tr>
+<tr>
+    <td class="line">41</td>
+    <td class="hits"></td>
+    <td class="source"> // Generates key to be used as channel name</td>
+</tr>
+<tr class="hit">
+    <td class="line">42</td>
+    <td class="hits">3</td>
+    <td class="source"> var getKey = function (id) {</td>
+</tr>
+<tr class="hit">
+    <td class="line">43</td>
+    <td class="hits">4</td>
+    <td class="source"> return &quot;report:build:&quot; + id;</td>
+</tr>
+<tr>
+    <td class="line">44</td>
+    <td class="hits"></td>
+    <td class="source"> };</td>
+</tr>
+<tr>
+    <td class="line">45</td>
+    <td class="hits"></td>
+    <td class="source"></td>
+</tr>
+<tr>
+    <td class="line">46</td>
+    <td class="hits"></td>
+    <td class="source"> // Handles streaming of output from container during build execution</td>
+</tr>
+<tr>
+    <td class="line">47</td>
+    <td class="hits"></td>
+    <td class="source"> // also it saves all lines within redis list</td>
+</tr>
+<tr>
+    <td class="line">48</td>
+    <td class="hits"></td>
+    <td class="source"> //</td>
+</tr>
+<tr>
+    <td class="line">49</td>
+    <td class="hits"></td>
+    <td class="source"> // Arguments:</td>
+</tr>
+<tr>
+    <td class="line">50</td>
+    <td class="hits"></td>
+    <td class="source"> // - `data` __literal__</td>
+</tr>
+<tr>
+    <td class="line">51</td>
+    <td class="hits"></td>
+    <td class="source"> // {</td>
+</tr>
+<tr>
+    <td class="line">52</td>
+    <td class="hits"></td>
+    <td class="source"> // id : &lt;build id&gt;,</td>
+</tr>
+<tr>
+    <td class="line">53</td>
+    <td class="hits"></td>
+    <td class="source"> // data: &lt;line of output&gt;</td>
+</tr>
+<tr>
+    <td class="line">54</td>
+    <td class="hits"></td>
+    <td class="source"> // }</td>
+</tr>
+<tr>
+    <td class="line">55</td>
+    <td class="hits"></td>
+    <td class="source"> // - `job` __bull.Job__ object</td>
+</tr>
+<tr>
+    <td class="line">56</td>
+    <td class="hits"></td>
+    <td class="source"> //</td>
+</tr>
+<tr class="hit">
+    <td class="line">57</td>
+    <td class="hits">3</td>
+    <td class="source"> var reportHandler = function (data, job) {</td>
+</tr>
+<tr class="hit">
+    <td class="line">58</td>
+    <td class="hits">4</td>
+    <td class="source"> var channel = &quot;channel_&quot; + data.id;</td>
+</tr>
+<tr class="hit">
+    <td class="line">59</td>
+    <td class="hits">4</td>
+    <td class="source"> var b = new Buffer(data.data);</td>
+</tr>
+<tr class="hit">
+    <td class="line">60</td>
+    <td class="hits">4</td>
+    <td class="source"> emitter.emit(&quot;progress&quot;, data);</td>
+</tr>
+<tr class="hit">
+    <td class="line">61</td>
+    <td class="hits">4</td>
+    <td class="source"> report.rpush(getKey(data.id), b);</td>
+</tr>
+<tr class="hit">
+    <td class="line">62</td>
+    <td class="hits">4</td>
+    <td class="source"> reportChannel.publish(channel, JSON.stringify(data));</td>
+</tr>
+<tr>
+    <td class="line">63</td>
+    <td class="hits"></td>
+    <td class="source"> };</td>
+</tr>
+<tr>
+    <td class="line">64</td>
+    <td class="hits"></td>
+    <td class="source"></td>
+</tr>
+<tr>
+    <td class="line">65</td>
+    <td class="hits"></td>
+    <td class="source"> // Handles result of build execution</td>
+</tr>
+<tr>
+    <td class="line">66</td>
+    <td class="hits"></td>
+    <td class="source"> //</td>
+</tr>
+<tr>
+    <td class="line">67</td>
+    <td class="hits"></td>
+    <td class="source"> // Arguments:</td>
+</tr>
+<tr>
+    <td class="line">68</td>
+    <td class="hits"></td>
+    <td class="source"> // - `result` __literal__</td>
+</tr>
+<tr>
+    <td class="line">69</td>
+    <td class="hits"></td>
+    <td class="source"> // {</td>
+</tr>
+<tr>
+    <td class="line">70</td>
+    <td class="hits"></td>
+    <td class="source"> // status : {</td>
+</tr>
+<tr>
+    <td class="line">71</td>
+    <td class="hits"></td>
+    <td class="source"> // StatusCode : &lt;exit code&gt;</td>
+</tr>
+<tr>
+    <td class="line">72</td>
+    <td class="hits"></td>
+    <td class="source"> // }</td>
+</tr>
+<tr>
+    <td class="line">73</td>
+    <td class="hits"></td>
+    <td class="source"> // }</td>
+</tr>
+<tr>
+    <td class="line">74</td>
+    <td class="hits"></td>
+    <td class="source"> // - `complete` __function__ bull complete callback</td>
+</tr>
+<tr>
+    <td class="line">75</td>
+    <td class="hits"></td>
+    <td class="source"> //</td>
+</tr>
+<tr class="hit">
+    <td class="line">76</td>
+    <td class="hits">3</td>
+    <td class="source"> var resultHandler = function (result, complete) {</td>
+</tr>
+<tr class="hit">
+    <td class="line">77</td>
+    <td class="hits">2</td>
+    <td class="source"> complete();</td>
+</tr>
+<tr class="hit">
+    <td class="line">78</td>
+    <td class="hits">2</td>
+    <td class="source"> resultQueue.add(result);</td>
+</tr>
+<tr class="hit">
+    <td class="line">79</td>
+    <td class="hits">2</td>
+    <td class="source"> var channel = &quot;channel_result_&quot; + result.id;</td>
+</tr>
+<tr class="hit">
+    <td class="line">80</td>
+    <td class="hits">2</td>
+    <td class="source"> reportChannel.publish(channel, JSON.stringify(result));</td>
+</tr>
+<tr>
+    <td class="line">81</td>
+    <td class="hits"></td>
+    <td class="source"> };</td>
+</tr>
+<tr>
+    <td class="line">82</td>
+    <td class="hits"></td>
+    <td class="source"></td>
+</tr>
+<tr>
+    <td class="line">83</td>
+    <td class="hits"></td>
+    <td class="source"> // Handles the build process once new job order is available</td>
+</tr>
+<tr>
+    <td class="line">84</td>
+    <td class="hits"></td>
+    <td class="source"> //</td>
+</tr>
+<tr>
+    <td class="line">85</td>
+    <td class="hits"></td>
+    <td class="source"> // Arguments:</td>
+</tr>
+<tr>
+    <td class="line">86</td>
+    <td class="hits"></td>
+    <td class="source"> // - `job` __bull.Job__ object</td>
+</tr>
+<tr>
+    <td class="line">87</td>
+    <td class="hits"></td>
+    <td class="source"> // - `complete` __function__ bull complete callback</td>
+</tr>
+<tr class="hit">
+    <td class="line">88</td>
+    <td class="hits">3</td>
+    <td class="source"> var buildHandler = function (job, complete) {</td>
+</tr>
+<tr class="hit">
+    <td class="line">89</td>
+    <td class="hits">2</td>
+    <td class="source"> log.info(&quot;job processing&quot;);</td>
+</tr>
+<tr class="hit">
+    <td class="line">90</td>
+    <td class="hits">2</td>
+    <td class="source"> job.data.started = new Date().getTime();</td>
+</tr>
+<tr class="hit">
+    <td class="line">91</td>
+    <td class="hits">2</td>
+    <td class="source"> worker.put(job.data, function (data) {</td>
+</tr>
+<tr class="hit">
+    <td class="line">92</td>
+    <td class="hits">4</td>
+    <td class="source"> job.data.output = [];</td>
+</tr>
+<tr class="hit">
+    <td class="line">93</td>
+    <td class="hits">4</td>
+    <td class="source"> reportHandler(data, job.data)</td>
+</tr>
+<tr>
+    <td class="line">94</td>
+    <td class="hits"></td>
+    <td class="source"> }).on('complete', function (result) {</td>
+</tr>
+<tr class="hit">
+    <td class="line">95</td>
+    <td class="hits">2</td>
+    <td class="source"> job.data.status = result;</td>
+</tr>
+<tr class="hit">
+    <td class="line">96</td>
+    <td class="hits">2</td>
+    <td class="source"> job.data.finished = new Date().getTime();</td>
+</tr>
+<tr class="hit">
+    <td class="line">97</td>
+    <td class="hits">2</td>
+    <td class="source"> emitter.emit('complete', result);</td>
+</tr>
+<tr class="hit">
+    <td class="line">98</td>
+    <td class="hits">2</td>
+    <td class="source"> log.info(&quot;job procesed&quot;);</td>
+</tr>
+<tr class="hit">
+    <td class="line">99</td>
+    <td class="hits">2</td>
+    <td class="source"> resultHandler(job.data, complete);</td>
+</tr>
+<tr>
+    <td class="line">100</td>
+    <td class="hits"></td>
+    <td class="source"> });</td>
+</tr>
+<tr>
+    <td class="line">101</td>
+    <td class="hits"></td>
+    <td class="source"> };</td>
+</tr>
+<tr>
+    <td class="line">102</td>
+    <td class="hits"></td>
+    <td class="source"></td>
+</tr>
+<tr>
+    <td class="line">103</td>
+    <td class="hits"></td>
+    <td class="source"> // Starting waiting for new job order</td>
+</tr>
+<tr>
+    <td class="line">104</td>
+    <td class="hits"></td>
+    <td class="source"> // this call is blocking as it uses redis blocking `BRPOPLPUSH` command</td>
+</tr>
+<tr class="hit">
+    <td class="line">105</td>
+    <td class="hits">3</td>
+    <td class="source"> buildQueue.process(buildHandler);</td>
+</tr>
+<tr>
+    <td class="line">106</td>
+    <td class="hits"></td>
+    <td class="source"></td>
+</tr>
+<tr>
+    <td class="line">107</td>
+    <td class="hits"></td>
+    <td class="source"></td>
+</tr>
+<tr>
+    <td class="line">108</td>
+    <td class="hits"></td>
+    <td class="source"> // Object literal that describes public interface of `Client`</td>
+</tr>
+<tr class="hit">
+    <td class="line">109</td>
+    <td class="hits">3</td>
+    <td class="source"> return {</td>
+</tr>
+<tr>
+    <td class="line">110</td>
+    <td class="hits"></td>
+    <td class="source"> close: function () {</td>
+</tr>
+<tr class="hit">
+    <td class="line">111</td>
+    <td class="hits">3</td>
+    <td class="source"> buildQueue.close();</td>
+</tr>
+<tr class="hit">
+    <td class="line">112</td>
+    <td class="hits">3</td>
+    <td class="source"> resultQueue.close();</td>
+</tr>
+<tr class="hit">
+    <td class="line">113</td>
+    <td class="hits">3</td>
+    <td class="source"> reportChannel.end();</td>
+</tr>
+<tr class="hit">
+    <td class="line">114</td>
+    <td class="hits">3</td>
+    <td class="source"> report.end();</td>
+</tr>
+<tr>
+    <td class="line">115</td>
+    <td class="hits"></td>
+    <td class="source"> },</td>
+</tr>
+<tr>
+    <td class="line">116</td>
+    <td class="hits"></td>
+    <td class="source"> complete: function (callback) {</td>
+</tr>
+<tr class="hit">
+    <td class="line">117</td>
+    <td class="hits">2</td>
+    <td class="source"> emitter.on('complete', callback);</td>
+</tr>
+<tr>
+    <td class="line">118</td>
+    <td class="hits"></td>
+    <td class="source"> },</td>
+</tr>
+<tr>
+    <td class="line">119</td>
+    <td class="hits"></td>
+    <td class="source"> progress: function (callback) {</td>
+</tr>
+<tr class="hit">
+    <td class="line">120</td>
+    <td class="hits">1</td>
+    <td class="source"> emitter.on('progress', callback);</td>
+</tr>
+<tr>
+    <td class="line">121</td>
+    <td class="hits"></td>
+    <td class="source"> }</td>
+</tr>
+<tr>
+    <td class="line">122</td>
+    <td class="hits"></td>
+    <td class="source"> }</td>
+</tr>
+<tr>
+    <td class="line">123</td>
+    <td class="hits"></td>
+    <td class="source">};</td>
+</tr>
+<tr>
+    <td class="line">124</td>
+    <td class="hits"></td>
+    <td class="source"></td>
+</tr>
+<tr>
+    <td class="line">125</td>
+    <td class="hits"></td>
+    <td class="source">// Inheriting from EventEmitter</td>
+</tr>
+<tr class="hit">
+    <td class="line">126</td>
+    <td class="hits">1</td>
+    <td class="source">util.inherits(Client, EventEmitter);</td>
+</tr>
+<tr>
+    <td class="line">127</td>
+    <td class="hits"></td>
+    <td class="source"></td>
+</tr>
+<tr class="hit">
+    <td class="line">128</td>
+    <td class="hits">1</td>
+    <td class="source">module.exports = Client;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="file"><h2 id="/vagrant/platform/worker/lib/item_container.js">
+    /vagrant/platform/worker/lib/item_container.js</h2>
+
+<div id="stats" class="high">
+    <div class="percentage">100%</div>
+    <div class="sloc">38</div>
+    <div class="hits">38</div>
+    <div class="misses">0</div>
+</div>
+<table id="source">
+<thead>
+<tr>
+    <th>Line</th>
+    <th>Hits</th>
+    <th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="hit">
+    <td class="line">1</td>
+    <td class="hits">1</td>
+    <td class="source">&quot;use strict&quot;;</td>
+</tr>
+<tr>
+    <td class="line">2</td>
+    <td class="hits"></td>
+    <td class="source">// Result stream</td>
+</tr>
+<tr>
+    <td class="line">3</td>
+    <td class="hits"></td>
+    <td class="source">// =============</td>
+</tr>
+<tr>
+    <td class="line">4</td>
+    <td class="hits"></td>
+    <td class="source">//</td>
+</tr>
+<tr>
+    <td class="line">5</td>
+    <td class="hits"></td>
+    <td class="source">// TODO: describe dependencies</td>
+</tr>
+<tr>
+    <td class="line">6</td>
+    <td class="hits"></td>
+    <td class="source">//</td>
+</tr>
+<tr class="hit">
+    <td class="line">7</td>
+    <td class="hits">1</td>
+    <td class="source">var stream = require(&quot;stream&quot;);</td>
+</tr>
+<tr class="hit">
+    <td class="line">8</td>
+    <td class="hits">1</td>
+    <td class="source">var Writable = stream.Writable;</td>
+</tr>
+<tr class="hit">
+    <td class="line">9</td>
+    <td class="hits">1</td>
+    <td class="source">var _ = require('lodash');</td>
+</tr>
+<tr class="hit">
+    <td class="line">10</td>
+    <td class="hits">1</td>
+    <td class="source">var util = require('util');</td>
+</tr>
+<tr>
+    <td class="line">11</td>
+    <td class="hits"></td>
+    <td class="source"></td>
+</tr>
+<tr>
+    <td class="line">12</td>
+    <td class="hits"></td>
+    <td class="source">// Implements Writable stream so we be able to pipe into docker container</td>
+</tr>
+<tr>
+    <td class="line">13</td>
+    <td class="hits"></td>
+    <td class="source">// output stream</td>
+</tr>
+<tr>
+    <td class="line">14</td>
+    <td class="hits"></td>
+    <td class="source">//</td>
+</tr>
+<tr>
+    <td class="line">15</td>
+    <td class="hits"></td>
+    <td class="source"></td>
+</tr>
+<tr>
+    <td class="line">16</td>
+    <td class="hits"></td>
+    <td class="source">// Constructor function - handles stream initialization</td>
+</tr>
+<tr>
+    <td class="line">17</td>
+    <td class="hits"></td>
+    <td class="source">//</td>
+</tr>
+<tr>
+    <td class="line">18</td>
+    <td class="hits"></td>
+    <td class="source">// Arguments:</td>
+</tr>
+<tr>
+    <td class="line">19</td>
+    <td class="hits"></td>
+    <td class="source">// - `item` __literal__</td>
+</tr>
+<tr>
+    <td class="line">20</td>
+    <td class="hits"></td>
+    <td class="source">// - callback __function__ executed once stream ready to write line of output
+    </td>
+</tr>
+<tr>
+    <td class="line">21</td>
+    <td class="hits"></td>
+    <td class="source">// - options __Stream options__</td>
+</tr>
+<tr class="hit">
+    <td class="line">22</td>
+    <td class="hits">1</td>
+    <td class="source">var Container = function (item, callback, options) {</td>
+</tr>
+<tr class="hit">
+    <td class="line">23</td>
+    <td class="hits">5</td>
+    <td class="source"> this.callback = callback;</td>
+</tr>
+<tr>
+    <td class="line">24</td>
+    <td class="hits"></td>
+    <td class="source"></td>
+</tr>
+<tr>
+    <td class="line">25</td>
+    <td class="hits"></td>
+    <td class="source"> // Build Id</td>
+</tr>
+<tr class="hit">
+    <td class="line">26</td>
+    <td class="hits">5</td>
+    <td class="source"> this.id = item.id;</td>
+</tr>
+<tr>
+    <td class="line">27</td>
+    <td class="hits"></td>
+    <td class="source"> // Line number</td>
+</tr>
+<tr class="hit">
+    <td class="line">28</td>
+    <td class="hits">5</td>
+    <td class="source"> this.lineNum = 0;</td>
+</tr>
+<tr class="hit">
+    <td class="line">29</td>
+    <td class="hits">5</td>
+    <td class="source"> this.item = item;</td>
+</tr>
+<tr>
+    <td class="line">30</td>
+    <td class="hits"></td>
+    <td class="source"></td>
+</tr>
+<tr>
+    <td class="line">31</td>
+    <td class="hits"></td>
+    <td class="source"> // Buffer to hold incomplete chunks (it will be complete once line feed or
+        carriage return detected)
+    </td>
+</tr>
+<tr class="hit">
+    <td class="line">32</td>
+    <td class="hits">5</td>
+    <td class="source"> this.lineBuffer = &quot;&quot;;</td>
+</tr>
+<tr class="hit">
+    <td class="line">33</td>
+    <td class="hits">5</td>
+    <td class="source"> options = !options ? {} : options;</td>
+</tr>
+<tr class="hit">
+    <td class="line">34</td>
+    <td class="hits">5</td>
+    <td class="source"> options.objectMode = true;</td>
+</tr>
+<tr>
+    <td class="line">35</td>
+    <td class="hits"></td>
+    <td class="source"></td>
+</tr>
+<tr>
+    <td class="line">36</td>
+    <td class="hits"></td>
+    <td class="source"> // Calling parent constructor</td>
+</tr>
+<tr class="hit">
+    <td class="line">37</td>
+    <td class="hits">5</td>
+    <td class="source"> Writable.call(this, options);</td>
+</tr>
+<tr>
+    <td class="line">38</td>
+    <td class="hits"></td>
+    <td class="source">};</td>
+</tr>
+<tr>
+    <td class="line">39</td>
+    <td class="hits"></td>
+    <td class="source"></td>
+</tr>
+<tr>
+    <td class="line">40</td>
+    <td class="hits"></td>
+    <td class="source">// Inheriting from StreamWritable</td>
+</tr>
+<tr class="hit">
+    <td class="line">41</td>
+    <td class="hits">1</td>
+    <td class="source">util.inherits(Container, Writable);</td>
+</tr>
+<tr>
+    <td class="line">42</td>
+    <td class="hits"></td>
+    <td class="source"></td>
+</tr>
+<tr>
+    <td class="line">43</td>
+    <td class="hits"></td>
+    <td class="source">// Handles chunk of data. It will buffer it if line end not detected</td>
+</tr>
+<tr class="hit">
+    <td class="line">44</td>
+    <td class="hits">1</td>
+    <td class="source">Container.prototype.parse = function (data) {</td>
+</tr>
+<tr class="hit">
+    <td class="line">45</td>
+    <td class="hits">8</td>
+    <td class="source"> var chars = [</td>
+</tr>
+<tr>
+    <td class="line">46</td>
+    <td class="hits"></td>
+    <td class="source"> {from: /\r\r/g, to: &quot;\r[#SPLIT#][#RETURN#]&quot;},</td>
+</tr>
+<tr>
+    <td class="line">47</td>
+    <td class="hits"></td>
+    <td class="source"> {from: /\r\n/g, to: &quot;[#SPLIT#]&quot;},</td>
+</tr>
+<tr>
+    <td class="line">48</td>
+    <td class="hits"></td>
+    <td class="source"> {from: /\n/g, to: &quot;[#SPLIT#]&quot;},</td>
+</tr>
+<tr>
+    <td class="line">49</td>
+    <td class="hits"></td>
+    <td class="source"> {from: /\r/g, to: &quot;\r[#RETURN#]&quot;},</td>
+</tr>
+<tr>
+    <td class="line">50</td>
+    <td class="hits"></td>
+    <td class="source"> {from: /\r\s/g, to: &quot; &quot;}</td>
+</tr>
+<tr>
+    <td class="line">51</td>
+    <td class="hits"></td>
+    <td class="source"> ];</td>
+</tr>
+<tr>
+    <td class="line">52</td>
+    <td class="hits"></td>
+    <td class="source"></td>
+</tr>
+<tr class="hit">
+    <td class="line">53</td>
+    <td class="hits">8</td>
+    <td class="source"> var result = data.toString();</td>
+</tr>
+<tr class="hit">
+    <td class="line">54</td>
+    <td class="hits">8</td>
+    <td class="source"> _.each(chars, function (val, idx) {</td>
+</tr>
+<tr class="hit">
+    <td class="line">55</td>
+    <td class="hits">40</td>
+    <td class="source"> result = result.replace(val.from, val.to);</td>
+</tr>
+<tr>
+    <td class="line">56</td>
+    <td class="hits"></td>
+    <td class="source"> });</td>
+</tr>
+<tr>
+    <td class="line">57</td>
+    <td class="hits"></td>
+    <td class="source"></td>
+</tr>
+<tr class="hit">
+    <td class="line">58</td>
+    <td class="hits">8</td>
+    <td class="source"> this.lineBuffer += result;</td>
+</tr>
+<tr>
+    <td class="line">59</td>
+    <td class="hits"></td>
+    <td class="source"></td>
+</tr>
+<tr class="hit">
+    <td class="line">60</td>
+    <td class="hits">8</td>
+    <td class="source"> if (/\[#SPLIT#\]/.test(result)) {</td>
+</tr>
+<tr class="hit">
+    <td class="line">61</td>
+    <td class="hits">7</td>
+    <td class="source"> var lines = [];</td>
+</tr>
+<tr class="hit">
+    <td class="line">62</td>
+    <td class="hits">7</td>
+    <td class="source"> var result = this.lineBuffer.split(&quot;[#SPLIT#]&quot;).filter(function (e)
+        {
+    </td>
+</tr>
+<tr class="hit">
+    <td class="line">63</td>
+    <td class="hits">16</td>
+    <td class="source"> return e</td>
+</tr>
+<tr>
+    <td class="line">64</td>
+    <td class="hits"></td>
+    <td class="source"> });</td>
+</tr>
+<tr class="hit">
+    <td class="line">65</td>
+    <td class="hits">7</td>
+    <td class="source"> _.each(result, function (l) {</td>
+</tr>
+<tr class="hit">
+    <td class="line">66</td>
+    <td class="hits">9</td>
+    <td class="source"> lines = lines.concat(l.split(&quot;[#RETURN#]&quot;));</td>
+</tr>
+<tr>
+    <td class="line">67</td>
+    <td class="hits"></td>
+    <td class="source"> }, this);</td>
+</tr>
+<tr class="hit">
+    <td class="line">68</td>
+    <td class="hits">7</td>
+    <td class="source"> this.lineBuffer = &quot;&quot;;</td>
+</tr>
+<tr class="hit">
+    <td class="line">69</td>
+    <td class="hits">7</td>
+    <td class="source"> return lines.filter(function (e) {</td>
+</tr>
+<tr class="hit">
+    <td class="line">70</td>
+    <td class="hits">9</td>
+    <td class="source"> return e != &quot;\r&quot; &amp;&amp; e != &quot;&quot;</td>
+</tr>
+<tr>
+    <td class="line">71</td>
+    <td class="hits"></td>
+    <td class="source"> });</td>
+</tr>
+<tr>
+    <td class="line">72</td>
+    <td class="hits"></td>
+    <td class="source"> }</td>
+</tr>
+<tr>
+    <td class="line">73</td>
+    <td class="hits"></td>
+    <td class="source"></td>
+</tr>
+<tr class="hit">
+    <td class="line">74</td>
+    <td class="hits">1</td>
+    <td class="source"> return null;</td>
+</tr>
+<tr>
+    <td class="line">75</td>
+    <td class="hits"></td>
+    <td class="source">};</td>
+</tr>
+<tr>
+    <td class="line">76</td>
+    <td class="hits"></td>
+    <td class="source"></td>
+</tr>
+<tr>
+    <td class="line">77</td>
+    <td class="hits"></td>
+    <td class="source">// Handles chunk of data from pipe</td>
+</tr>
+<tr>
+    <td class="line">78</td>
+    <td class="hits"></td>
+    <td class="source">// Note:it may call `this.callback` more than once</td>
+</tr>
+<tr class="hit">
+    <td class="line">79</td>
+    <td class="hits">1</td>
+    <td class="source">Container.prototype._write = function (chunk, enc, cb) {</td>
+</tr>
+<tr class="hit">
+    <td class="line">80</td>
+    <td class="hits">8</td>
+    <td class="source"> var lines = this.parse(chunk);</td>
+</tr>
+<tr class="hit">
+    <td class="line">81</td>
+    <td class="hits">8</td>
+    <td class="source"> if (this.callback &amp;&amp; lines) {</td>
+</tr>
+<tr class="hit">
+    <td class="line">82</td>
+    <td class="hits">3</td>
+    <td class="source"> _.each(lines, function (l) {</td>
+</tr>
+<tr class="hit">
+    <td class="line">83</td>
+    <td class="hits">4</td>
+    <td class="source"> this.callback({</td>
+</tr>
+<tr>
+    <td class="line">84</td>
+    <td class="hits"></td>
+    <td class="source"> id: this.id,</td>
+</tr>
+<tr>
+    <td class="line">85</td>
+    <td class="hits"></td>
+    <td class="source"> line: this.lineNum++,</td>
+</tr>
+<tr>
+    <td class="line">86</td>
+    <td class="hits"></td>
+    <td class="source"> data: l</td>
+</tr>
+<tr>
+    <td class="line">87</td>
+    <td class="hits"></td>
+    <td class="source"> });</td>
+</tr>
+<tr>
+    <td class="line">88</td>
+    <td class="hits"></td>
+    <td class="source"> }, this);</td>
+</tr>
+<tr>
+    <td class="line">89</td>
+    <td class="hits"></td>
+    <td class="source"> }</td>
+</tr>
+<tr class="hit">
+    <td class="line">90</td>
+    <td class="hits">8</td>
+    <td class="source"> cb();</td>
+</tr>
+<tr>
+    <td class="line">91</td>
+    <td class="hits"></td>
+    <td class="source">};</td>
+</tr>
+<tr>
+    <td class="line">92</td>
+    <td class="hits"></td>
+    <td class="source"></td>
+</tr>
+<tr class="hit">
+    <td class="line">93</td>
+    <td class="hits">1</td>
+    <td class="source">module.exports = Container;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="file"><h2 id="/vagrant/platform/worker/lib/logger.js">/vagrant/platform/worker/lib/logger.js</h2>
+
     <div id="stats" class="high">
-        <div class="percentage">96%</div>
-        <div class="sloc">128</div>
-        <div class="hits">124</div>
-        <div class="misses">4</div>
+        <div class="percentage">100%</div>
+        <div class="sloc">11</div>
+        <div class="hits">11</div>
+        <div class="misses">0</div>
     </div>
-    <div id="files">
-        <div class="file"><h2 id="/vagrant/platform/worker/lib/client.js">/vagrant/platform/worker/lib/client.js</h2>
+    <table id="source">
+        <thead>
+        <tr>
+            <th>Line</th>
+            <th>Hits</th>
+            <th>Source</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="hit">
+            <td class="line">1</td>
+            <td class="hits">1</td>
+            <td class="source">'use strict';</td>
+        </tr>
+        <tr class="hit">
+            <td class="line">2</td>
+            <td class="hits">1</td>
+            <td class="source">var logger = require('winston');</td>
+        </tr>
+        <tr>
+            <td class="line">3</td>
+            <td class="hits"></td>
+            <td class="source">// Logger configuration</td>
+        </tr>
+        <tr>
+            <td class="line">4</td>
+            <td class="hits"></td>
+            <td class="source">// ====================</td>
+        </tr>
+        <tr>
+            <td class="line">5</td>
+            <td class="hits"></td>
+            <td class="source">//</td>
+        </tr>
+        <tr>
+            <td class="line">6</td>
+            <td class="hits"></td>
+            <td class="source">// Configures Logger instance. Uses `winston` library to log to different
+                destinations
+            </td>
+        </tr>
+        <tr class="hit">
+            <td class="line">7</td>
+            <td class="hits">1</td>
+            <td class="source">var Logger = function (env) {</td>
+        </tr>
+        <tr class="hit">
+            <td class="line">8</td>
+            <td class="hits">1</td>
+            <td class="source"> env = env || &quot;test&quot;;</td>
+        </tr>
+        <tr class="hit">
+            <td class="line">9</td>
+            <td class="hits">1</td>
+            <td class="source"> var levels = {</td>
+        </tr>
+        <tr>
+            <td class="line">10</td>
+            <td class="hits"></td>
+            <td class="source">        &quot;test&quot;: &quot;error&quot;,</td>
+        </tr>
+        <tr>
+            <td class="line">11</td>
+            <td class="hits"></td>
+            <td class="source">        &quot;dev&quot;: &quot;debug&quot;,</td>
+        </tr>
+        <tr>
+            <td class="line">12</td>
+            <td class="hits"></td>
+            <td class="source">        &quot;production&quot;: &quot;info&quot;</td>
+        </tr>
+        <tr>
+            <td class="line">13</td>
+            <td class="hits"></td>
+            <td class="source"> };</td>
+        </tr>
+        <tr>
+            <td class="line">14</td>
+            <td class="hits"></td>
+            <td class="source"></td>
+        </tr>
+        <tr class="hit">
+            <td class="line">15</td>
+            <td class="hits">1</td>
+            <td class="source"> logger.setLevels({debug: 0, info: 1, silly: 2, warn: 3, error: 4});</td>
+        </tr>
+        <tr class="hit">
+            <td class="line">16</td>
+            <td class="hits">1</td>
+            <td class="source"> logger.addColors({debug: 'green', info: 'cyan', silly: 'magenta', warn:
+                'yellow', error: 'red'});
+            </td>
+        </tr>
+        <tr class="hit">
+            <td class="line">17</td>
+            <td class="hits">1</td>
+            <td class="source"> logger.remove(logger.transports.Console);</td>
+        </tr>
+        <tr class="hit">
+            <td class="line">18</td>
+            <td class="hits">1</td>
+            <td class="source"> logger.add(logger.transports.Console, { level: levels[env], colorize: true });
+            </td>
+        </tr>
+        <tr class="hit">
+            <td class="line">19</td>
+            <td class="hits">1</td>
+            <td class="source"> return logger;</td>
+        </tr>
+        <tr>
+            <td class="line">20</td>
+            <td class="hits"></td>
+            <td class="source">};</td>
+        </tr>
+        <tr>
+            <td class="line">21</td>
+            <td class="hits"></td>
+            <td class="source"></td>
+        </tr>
+        <tr class="hit">
+            <td class="line">22</td>
+            <td class="hits">1</td>
+            <td class="source">module.exports = Logger;</td>
+        </tr>
+        <tr>
+            <td class="line">23</td>
+            <td class="hits"></td>
+            <td class="source"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="file"><h2 id="/vagrant/platform/worker/lib/worker.js">/vagrant/platform/worker/lib/worker.js</h2>
 
-            <div id="stats" class="high">
-                <div class="percentage">100%</div>
-                <div class="sloc">41</div>
-                <div class="hits">41</div>
-                <div class="misses">0</div>
-            </div>
-            <table id="source">
-                <thead>
-                <tr>
-                    <th>Line</th>
-                    <th>Hits</th>
-                    <th>Source</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr class="hit">
-                    <td class="line">1</td>
-                    <td class="hits">1</td>
-                    <td class="source">'use strict';</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">2</td>
-                    <td class="hits">1</td>
-                    <td class="source">var Queue = require('bull'),</td>
-                </tr>
-                <tr>
-                    <td class="line">3</td>
-                    <td class="hits"></td>
-                    <td class="source"> EventEmitter = require('events').EventEmitter,</td>
-                </tr>
-                <tr>
-                    <td class="line">4</td>
-                    <td class="hits"></td>
-                    <td class="source"> redis = require('redis'),</td>
-                </tr>
-                <tr>
-                    <td class="line">5</td>
-                    <td class="hits"></td>
-                    <td class="source"> util = require('util'),</td>
-                </tr>
-                <tr>
-                    <td class="line">6</td>
-                    <td class="hits"></td>
-                    <td class="source"> Worker = require('./worker.js');</td>
-                </tr>
-                <tr>
-                    <td class="line">7</td>
-                    <td class="hits"></td>
-                    <td class="source"></td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">8</td>
-                    <td class="hits">1</td>
-                    <td class="source">var Client = function (host, port, log) {</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">9</td>
-                    <td class="hits">3</td>
-                    <td class="source"> var worker = new Worker();</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">10</td>
-                    <td class="hits">3</td>
-                    <td class="source"> var log = log || console;</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">11</td>
-                    <td class="hits">3</td>
-                    <td class="source"> var emitter = this;</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">12</td>
-                    <td class="hits">3</td>
-                    <td class="source"> var buildQueue = Queue(&quot;build&quot;, port, host);</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">13</td>
-                    <td class="hits">3</td>
-                    <td class="source"> var resultQueue = Queue(&quot;result&quot;, port, host);</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">14</td>
-                    <td class="hits">3</td>
-                    <td class="source"> var reportChannel = redis.createClient();</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">15</td>
-                    <td class="hits">3</td>
-                    <td class="source"> var report = redis.createClient();</td>
-                </tr>
-                <tr>
-                    <td class="line">16</td>
-                    <td class="hits"></td>
-                    <td class="source"></td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">17</td>
-                    <td class="hits">3</td>
-                    <td class="source"> var getKey = function(id){</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">18</td>
-                    <td class="hits">4</td>
-                    <td class="source"> return &quot;report:build:&quot; + id;</td>
-                </tr>
-                <tr>
-                    <td class="line">19</td>
-                    <td class="hits"></td>
-                    <td class="source"> };</td>
-                </tr>
-                <tr>
-                    <td class="line">20</td>
-                    <td class="hits"></td>
-                    <td class="source"></td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">21</td>
-                    <td class="hits">3</td>
-                    <td class="source"> var reportHandler = function (data, job) {</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">22</td>
-                    <td class="hits">4</td>
-                    <td class="source"> var channel = &quot;channel_&quot; + data.id;</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">23</td>
-                    <td class="hits">4</td>
-                    <td class="source"> var b = new Buffer(data.data);</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">24</td>
-                    <td class="hits">4</td>
-                    <td class="source"> emitter.emit(&quot;progress&quot;, data);</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">25</td>
-                    <td class="hits">4</td>
-                    <td class="source"> console.log(data);</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">26</td>
-                    <td class="hits">4</td>
-                    <td class="source"> report.rpush(getKey(data.id),b);</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">27</td>
-                    <td class="hits">4</td>
-                    <td class="source"> reportChannel.publish(channel, JSON.stringify(data));</td>
-                </tr>
-                <tr>
-                    <td class="line">28</td>
-                    <td class="hits"></td>
-                    <td class="source"> };</td>
-                </tr>
-                <tr>
-                    <td class="line">29</td>
-                    <td class="hits"></td>
-                    <td class="source"></td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">30</td>
-                    <td class="hits">3</td>
-                    <td class="source"> var resultHandler = function (result, complete) {</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">31</td>
-                    <td class="hits">2</td>
-                    <td class="source"> complete();</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">32</td>
-                    <td class="hits">2</td>
-                    <td class="source"> resultQueue.add(result);</td>
-                </tr>
-                <tr>
-                    <td class="line">33</td>
-                    <td class="hits"></td>
-                    <td class="source"> };</td>
-                </tr>
-                <tr>
-                    <td class="line">34</td>
-                    <td class="hits"></td>
-                    <td class="source"></td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">35</td>
-                    <td class="hits">3</td>
-                    <td class="source"> var buildHandler = function (job, complete) {</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">36</td>
-                    <td class="hits">2</td>
-                    <td class="source"> log.info(&quot;job processing&quot;);</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">37</td>
-                    <td class="hits">2</td>
-                    <td class="source"> worker.put(job.data, function (data) {</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">38</td>
-                    <td class="hits">4</td>
-                    <td class="source"> job.data.output = [];</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">39</td>
-                    <td class="hits">4</td>
-                    <td class="source"> reportHandler(data, job.data)</td>
-                </tr>
-                <tr>
-                    <td class="line">40</td>
-                    <td class="hits"></td>
-                    <td class="source"> }).on('complete', function (result) {</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">41</td>
-                    <td class="hits">2</td>
-                    <td class="source"> job.data.status = result;</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">42</td>
-                    <td class="hits">2</td>
-                    <td class="source"> emitter.emit('complete', result);</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">43</td>
-                    <td class="hits">2</td>
-                    <td class="source"> log.info(&quot;job procesed&quot;);</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">44</td>
-                    <td class="hits">2</td>
-                    <td class="source"> resultHandler(job.data, complete);</td>
-                </tr>
-                <tr>
-                    <td class="line">45</td>
-                    <td class="hits"></td>
-                    <td class="source"> });</td>
-                </tr>
-                <tr>
-                    <td class="line">46</td>
-                    <td class="hits"></td>
-                    <td class="source"> };</td>
-                </tr>
-                <tr>
-                    <td class="line">47</td>
-                    <td class="hits"></td>
-                    <td class="source"></td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">48</td>
-                    <td class="hits">3</td>
-                    <td class="source"> buildQueue.process(buildHandler);</td>
-                </tr>
-                <tr>
-                    <td class="line">49</td>
-                    <td class="hits"></td>
-                    <td class="source"></td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">50</td>
-                    <td class="hits">3</td>
-                    <td class="source"> return {</td>
-                </tr>
-                <tr>
-                    <td class="line">51</td>
-                    <td class="hits"></td>
-                    <td class="source"> close: function () {</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">52</td>
-                    <td class="hits">3</td>
-                    <td class="source"> buildQueue.close();</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">53</td>
-                    <td class="hits">3</td>
-                    <td class="source"> resultQueue.close();</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">54</td>
-                    <td class="hits">3</td>
-                    <td class="source"> reportChannel.end();</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">55</td>
-                    <td class="hits">3</td>
-                    <td class="source"> report.end();</td>
-                </tr>
-                <tr>
-                    <td class="line">56</td>
-                    <td class="hits"></td>
-                    <td class="source"> },</td>
-                </tr>
-                <tr>
-                    <td class="line">57</td>
-                    <td class="hits"></td>
-                    <td class="source"> complete: function (callback) {</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">58</td>
-                    <td class="hits">2</td>
-                    <td class="source"> emitter.on('complete', callback);</td>
-                </tr>
-                <tr>
-                    <td class="line">59</td>
-                    <td class="hits"></td>
-                    <td class="source"> },</td>
-                </tr>
-                <tr>
-                    <td class="line">60</td>
-                    <td class="hits"></td>
-                    <td class="source"> progress: function (callback) {</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">61</td>
-                    <td class="hits">1</td>
-                    <td class="source"> emitter.on('progress', callback);</td>
-                </tr>
-                <tr>
-                    <td class="line">62</td>
-                    <td class="hits"></td>
-                    <td class="source"> }</td>
-                </tr>
-                <tr>
-                    <td class="line">63</td>
-                    <td class="hits"></td>
-                    <td class="source"> }</td>
-                </tr>
-                <tr>
-                    <td class="line">64</td>
-                    <td class="hits"></td>
-                    <td class="source">};</td>
-                </tr>
-                <tr>
-                    <td class="line">65</td>
-                    <td class="hits"></td>
-                    <td class="source"></td>
-                </tr>
-                <tr>
-                    <td class="line">66</td>
-                    <td class="hits"></td>
-                    <td class="source"></td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">67</td>
-                    <td class="hits">1</td>
-                    <td class="source">util.inherits(Client, EventEmitter);</td>
-                </tr>
-                <tr>
-                    <td class="line">68</td>
-                    <td class="hits"></td>
-                    <td class="source"></td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">69</td>
-                    <td class="hits">1</td>
-                    <td class="source">module.exports = Client;</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="file"><h2 id="/vagrant/platform/worker/lib/item_container.js">
-            /vagrant/platform/worker/lib/item_container.js</h2>
-
-            <div id="stats" class="high">
-                <div class="percentage">100%</div>
-                <div class="sloc">38</div>
-                <div class="hits">38</div>
-                <div class="misses">0</div>
-            </div>
-            <table id="source">
-                <thead>
-                <tr>
-                    <th>Line</th>
-                    <th>Hits</th>
-                    <th>Source</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr class="hit">
-                    <td class="line">1</td>
-                    <td class="hits">1</td>
-                    <td class="source">&quot;use strict&quot;;</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">2</td>
-                    <td class="hits">1</td>
-                    <td class="source">var stream = require(&quot;stream&quot;);</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">3</td>
-                    <td class="hits">1</td>
-                    <td class="source">var Writable = stream.Writable;</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">4</td>
-                    <td class="hits">1</td>
-                    <td class="source">var _ = require('lodash');</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">5</td>
-                    <td class="hits">1</td>
-                    <td class="source">var util = require('util');</td>
-                </tr>
-                <tr>
-                    <td class="line">6</td>
-                    <td class="hits"></td>
-                    <td class="source"></td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">7</td>
-                    <td class="hits">1</td>
-                    <td class="source">var Container = function (item, callback, options) {</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">8</td>
-                    <td class="hits">5</td>
-                    <td class="source"> this.callback = callback;</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">9</td>
-                    <td class="hits">5</td>
-                    <td class="source"> this.id = item.id;</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">10</td>
-                    <td class="hits">5</td>
-                    <td class="source"> this.lineNum = 0;</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">11</td>
-                    <td class="hits">5</td>
-                    <td class="source"> this.item = item;</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">12</td>
-                    <td class="hits">5</td>
-                    <td class="source"> this.lineBuffer = &quot;&quot;;</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">13</td>
-                    <td class="hits">5</td>
-                    <td class="source"> options = !options ? {} : options;</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">14</td>
-                    <td class="hits">5</td>
-                    <td class="source"> options.objectMode = true;</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">15</td>
-                    <td class="hits">5</td>
-                    <td class="source"> Writable.call(this, options);</td>
-                </tr>
-                <tr>
-                    <td class="line">16</td>
-                    <td class="hits"></td>
-                    <td class="source">};</td>
-                </tr>
-                <tr>
-                    <td class="line">17</td>
-                    <td class="hits"></td>
-                    <td class="source"></td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">18</td>
-                    <td class="hits">1</td>
-                    <td class="source">util.inherits(Container, Writable);</td>
-                </tr>
-                <tr>
-                    <td class="line">19</td>
-                    <td class="hits"></td>
-                    <td class="source"></td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">20</td>
-                    <td class="hits">1</td>
-                    <td class="source">Container.prototype.parse = function (data) {</td>
-                </tr>
-                <tr>
-                    <td class="line">21</td>
-                    <td class="hits"></td>
-                    <td class="source"></td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">22</td>
-                    <td class="hits">6</td>
-                    <td class="source"> var chars = [</td>
-                </tr>
-                <tr>
-                    <td class="line">23</td>
-                    <td class="hits"></td>
-                    <td class="source"> {from: /\r\r/g, to: &quot;[#SPLIT#][#RETURN#]\r&quot;},</td>
-                </tr>
-                <tr>
-                    <td class="line">24</td>
-                    <td class="hits"></td>
-                    <td class="source"> {from: /\r\n/g, to: &quot;[#SPLIT#]&quot;},</td>
-                </tr>
-                <tr>
-                    <td class="line">25</td>
-                    <td class="hits"></td>
-                    <td class="source"> {from: /\n/g, to: &quot;[#SPLIT#]&quot;},</td>
-                </tr>
-                <tr>
-                    <td class="line">26</td>
-                    <td class="hits"></td>
-                    <td class="source"> {from: /\r/g, to: &quot;[#RETURN#]\r&quot;},</td>
-                </tr>
-                <tr>
-                    <td class="line">27</td>
-                    <td class="hits"></td>
-                    <td class="source"> {from: /\r\s/g, to: &quot; &quot;}</td>
-                </tr>
-                <tr>
-                    <td class="line">28</td>
-                    <td class="hits"></td>
-                    <td class="source"> ];</td>
-                </tr>
-                <tr>
-                    <td class="line">29</td>
-                    <td class="hits"></td>
-                    <td class="source"></td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">30</td>
-                    <td class="hits">6</td>
-                    <td class="source"> var result = data.toString();</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">31</td>
-                    <td class="hits">6</td>
-                    <td class="source"> _.each(chars, function (val, idx) {</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">32</td>
-                    <td class="hits">30</td>
-                    <td class="source"> result = result.replace(val.from, val.to);</td>
-                </tr>
-                <tr>
-                    <td class="line">33</td>
-                    <td class="hits"></td>
-                    <td class="source"> });</td>
-                </tr>
-                <tr>
-                    <td class="line">34</td>
-                    <td class="hits"></td>
-                    <td class="source"></td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">35</td>
-                    <td class="hits">6</td>
-                    <td class="source"> this.lineBuffer += result;</td>
-                </tr>
-                <tr>
-                    <td class="line">36</td>
-                    <td class="hits"></td>
-                    <td class="source"></td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">37</td>
-                    <td class="hits">6</td>
-                    <td class="source"> if (/\[#SPLIT#\]/.test(result)) {</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">38</td>
-                    <td class="hits">5</td>
-                    <td class="source"> var lines = [];</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">39</td>
-                    <td class="hits">5</td>
-                    <td class="source"> var result = this.lineBuffer.split(&quot;[#SPLIT#]&quot;).filter(function (e)
-                        {
-                    </td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">40</td>
-                    <td class="hits">14</td>
-                    <td class="source"> return e</td>
-                </tr>
-                <tr>
-                    <td class="line">41</td>
-                    <td class="hits"></td>
-                    <td class="source"> });</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">42</td>
-                    <td class="hits">5</td>
-                    <td class="source"> _.each(result, function (l) {</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">43</td>
-                    <td class="hits">9</td>
-                    <td class="source"> lines = lines.concat(l.split(&quot;[#RETURN#]&quot;));</td>
-                </tr>
-                <tr>
-                    <td class="line">44</td>
-                    <td class="hits"></td>
-                    <td class="source"> }, this);</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">45</td>
-                    <td class="hits">5</td>
-                    <td class="source"> this.lineBuffer = &quot;&quot;;</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">46</td>
-                    <td class="hits">5</td>
-                    <td class="source"> return lines.filter(function (e) {</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">47</td>
-                    <td class="hits">9</td>
-                    <td class="source"> return e != &quot;\r&quot; &amp;&amp; e != &quot;&quot;</td>
-                </tr>
-                <tr>
-                    <td class="line">48</td>
-                    <td class="hits"></td>
-                    <td class="source"> });</td>
-                </tr>
-                <tr>
-                    <td class="line">49</td>
-                    <td class="hits"></td>
-                    <td class="source"> }</td>
-                </tr>
-                <tr>
-                    <td class="line">50</td>
-                    <td class="hits"></td>
-                    <td class="source"></td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">51</td>
-                    <td class="hits">1</td>
-                    <td class="source"> return null;</td>
-                </tr>
-                <tr>
-                    <td class="line">52</td>
-                    <td class="hits"></td>
-                    <td class="source">};</td>
-                </tr>
-                <tr>
-                    <td class="line">53</td>
-                    <td class="hits"></td>
-                    <td class="source"></td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">54</td>
-                    <td class="hits">1</td>
-                    <td class="source">Container.prototype._write = function (chunk, enc, cb) {</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">55</td>
-                    <td class="hits">6</td>
-                    <td class="source"> var lines = this.parse(chunk);</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">56</td>
-                    <td class="hits">6</td>
-                    <td class="source"> if (this.callback &amp;&amp; lines) {</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">57</td>
-                    <td class="hits">2</td>
-                    <td class="source"> _.each(lines, function (l) {</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">58</td>
-                    <td class="hits">4</td>
-                    <td class="source"> this.callback({</td>
-                </tr>
-                <tr>
-                    <td class="line">59</td>
-                    <td class="hits"></td>
-                    <td class="source"> id: this.id,</td>
-                </tr>
-                <tr>
-                    <td class="line">60</td>
-                    <td class="hits"></td>
-                    <td class="source"> line: this.lineNum++,</td>
-                </tr>
-                <tr>
-                    <td class="line">61</td>
-                    <td class="hits"></td>
-                    <td class="source"> data: l</td>
-                </tr>
-                <tr>
-                    <td class="line">62</td>
-                    <td class="hits"></td>
-                    <td class="source"> });</td>
-                </tr>
-                <tr>
-                    <td class="line">63</td>
-                    <td class="hits"></td>
-                    <td class="source"> }, this);</td>
-                </tr>
-                <tr>
-                    <td class="line">64</td>
-                    <td class="hits"></td>
-                    <td class="source"> }</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">65</td>
-                    <td class="hits">6</td>
-                    <td class="source"> cb();</td>
-                </tr>
-                <tr>
-                    <td class="line">66</td>
-                    <td class="hits"></td>
-                    <td class="source">};</td>
-                </tr>
-                <tr>
-                    <td class="line">67</td>
-                    <td class="hits"></td>
-                    <td class="source"></td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">68</td>
-                    <td class="hits">1</td>
-                    <td class="source">module.exports = Container;</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="file"><h2 id="/vagrant/platform/worker/lib/logger.js">/vagrant/platform/worker/lib/logger.js</h2>
-
-            <div id="stats" class="high">
-                <div class="percentage">100%</div>
-                <div class="sloc">11</div>
-                <div class="hits">11</div>
-                <div class="misses">0</div>
-            </div>
-            <table id="source">
-                <thead>
-                <tr>
-                    <th>Line</th>
-                    <th>Hits</th>
-                    <th>Source</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr class="hit">
-                    <td class="line">1</td>
-                    <td class="hits">1</td>
-                    <td class="source">'use strict';</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">2</td>
-                    <td class="hits">1</td>
-                    <td class="source">var logger = require('winston');</td>
-                </tr>
-                <tr>
-                    <td class="line">3</td>
-                    <td class="hits"></td>
-                    <td class="source"></td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">4</td>
-                    <td class="hits">1</td>
-                    <td class="source">var Logger = function (env) {</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">5</td>
-                    <td class="hits">1</td>
-                    <td class="source"> env = env || &quot;test&quot;;</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">6</td>
-                    <td class="hits">1</td>
-                    <td class="source"> var levels = {</td>
-                </tr>
-                <tr>
-                    <td class="line">7</td>
-                    <td class="hits"></td>
-                    <td class="source">        &quot;test&quot;: &quot;error&quot;,</td>
-                </tr>
-                <tr>
-                    <td class="line">8</td>
-                    <td class="hits"></td>
-                    <td class="source">        &quot;dev&quot;: &quot;debug&quot;,</td>
-                </tr>
-                <tr>
-                    <td class="line">9</td>
-                    <td class="hits"></td>
-                    <td class="source">        &quot;production&quot;: &quot;info&quot;</td>
-                </tr>
-                <tr>
-                    <td class="line">10</td>
-                    <td class="hits"></td>
-                    <td class="source"> };</td>
-                </tr>
-                <tr>
-                    <td class="line">11</td>
-                    <td class="hits"></td>
-                    <td class="source"></td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">12</td>
-                    <td class="hits">1</td>
-                    <td class="source"> logger.setLevels({debug: 0, info: 1, silly: 2, warn: 3, error: 4});</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">13</td>
-                    <td class="hits">1</td>
-                    <td class="source"> logger.addColors({debug: 'green', info: 'cyan', silly: 'magenta', warn:
-                        'yellow', error: 'red'});
-                    </td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">14</td>
-                    <td class="hits">1</td>
-                    <td class="source"> logger.remove(logger.transports.Console);</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">15</td>
-                    <td class="hits">1</td>
-                    <td class="source"> logger.add(logger.transports.Console, { level: levels[env], colorize: true });
-                    </td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">16</td>
-                    <td class="hits">1</td>
-                    <td class="source"> return logger;</td>
-                </tr>
-                <tr>
-                    <td class="line">17</td>
-                    <td class="hits"></td>
-                    <td class="source">};</td>
-                </tr>
-                <tr>
-                    <td class="line">18</td>
-                    <td class="hits"></td>
-                    <td class="source"></td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">19</td>
-                    <td class="hits">1</td>
-                    <td class="source">module.exports = Logger;</td>
-                </tr>
-                <tr>
-                    <td class="line">20</td>
-                    <td class="hits"></td>
-                    <td class="source"></td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="file"><h2 id="/vagrant/platform/worker/lib/worker.js">/vagrant/platform/worker/lib/worker.js</h2>
-
-            <div id="stats" class="high">
-                <div class="percentage">89%</div>
-                <div class="sloc">38</div>
-                <div class="hits">34</div>
-                <div class="misses">4</div>
-            </div>
-            <table id="source">
-                <thead>
-                <tr>
-                    <th>Line</th>
-                    <th>Hits</th>
-                    <th>Source</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr class="hit">
-                    <td class="line">1</td>
-                    <td class="hits">1</td>
-                    <td class="source">'use strict';</td>
-                </tr>
-                <tr>
-                    <td class="line">2</td>
-                    <td class="hits"></td>
-                    <td class="source"></td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">3</td>
-                    <td class="hits">1</td>
-                    <td class="source">var Docker = require(&quot;dockerode&quot;);</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">4</td>
-                    <td class="hits">1</td>
-                    <td class="source">var Container = require(&quot;/vagrant/platform/worker/lib/./item_container.js&quot;);</td>
-                </tr>
-                <tr>
-                    <td class="line">5</td>
-                    <td class="hits"></td>
-                    <td class="source"></td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">6</td>
-                    <td class="hits">1</td>
-                    <td class="source">var Worker = function () {</td>
-                </tr>
-                <tr>
-                    <td class="line">7</td>
-                    <td class="hits"></td>
-                    <td class="source"></td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">8</td>
-                    <td class="hits">7</td>
-                    <td class="source"> var docker = new Docker({</td>
-                </tr>
-                <tr>
-                    <td class="line">9</td>
-                    <td class="hits"></td>
-                    <td class="source"> socketPath: '/var/run/docker.sock'</td>
-                </tr>
-                <tr>
-                    <td class="line">10</td>
-                    <td class="hits"></td>
-                    <td class="source"> });</td>
-                </tr>
-                <tr>
-                    <td class="line">11</td>
-                    <td class="hits"></td>
-                    <td class="source"></td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">12</td>
-                    <td class="hits">7</td>
-                    <td class="source"> var prepareScript = function (config) {</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">13</td>
-                    <td class="hits">6</td>
-                    <td class="source"> var script = [];</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">14</td>
-                    <td class="hits">6</td>
-                    <td class="source"> var commands = config.payload.commands;</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">15</td>
-                    <td class="hits">6</td>
-                    <td class="source"> for (var idx in commands) {</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">16</td>
-                    <td class="hits">6</td>
-                    <td class="source"> script[idx] = &quot;echo '$ &quot; + commands[idx] + &quot;'; &quot; +
-                        commands[idx] + &quot; || exit 1;&quot;;
-                    </td>
-                </tr>
-                <tr>
-                    <td class="line">17</td>
-                    <td class="hits"></td>
-                    <td class="source"> }</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">18</td>
-                    <td class="hits">6</td>
-                    <td class="source"> var setup = config.skipSetup ? &quot;&quot; : &quot;git clone &quot;+config.reposity.uri+&quot;
-                        &amp;&amp; cd &quot;+config.reposity.name+&quot;;&quot;;
-                    </td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">19</td>
-                    <td class="hits">6</td>
-                    <td class="source"> return &quot;(&quot; + setup + script.join('\n') + &quot;)&quot;;</td>
-                </tr>
-                <tr>
-                    <td class="line">20</td>
-                    <td class="hits"></td>
-                    <td class="source"> };</td>
-                </tr>
-                <tr>
-                    <td class="line">21</td>
-                    <td class="hits"></td>
-                    <td class="source"></td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">22</td>
-                    <td class="hits">7</td>
-                    <td class="source"> var processItem = function (item) {</td>
-                </tr>
-                <tr>
-                    <td class="line">23</td>
-                    <td class="hits"></td>
-                    <td class="source"></td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">24</td>
-                    <td class="hits">5</td>
-                    <td class="source"> var script = prepareScript(item.item);</td>
-                </tr>
-                <tr>
-                    <td class="line">25</td>
-                    <td class="hits"></td>
-                    <td class="source"></td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">26</td>
-                    <td class="hits">5</td>
-                    <td class="source"> docker.createContainer({</td>
-                </tr>
-                <tr>
-                    <td class="line">27</td>
-                    <td class="hits"></td>
-                    <td class="source"> Image: 'dockerfile/nodejs',</td>
-                </tr>
-                <tr>
-                    <td class="line">28</td>
-                    <td class="hits"></td>
-                    <td class="source"> AttachStdin: false,</td>
-                </tr>
-                <tr>
-                    <td class="line">29</td>
-                    <td class="hits"></td>
-                    <td class="source"> AttachStdout: true,</td>
-                </tr>
-                <tr>
-                    <td class="line">30</td>
-                    <td class="hits"></td>
-                    <td class="source"> AttachStderr: true,</td>
-                </tr>
-                <tr>
-                    <td class="line">31</td>
-                    <td class="hits"></td>
-                    <td class="source"> Tty: true,</td>
-                </tr>
-                <tr>
-                    <td class="line">32</td>
-                    <td class="hits"></td>
-                    <td class="source"> Cmd: ['/bin/sh', '-c', script],</td>
-                </tr>
-                <tr>
-                    <td class="line">33</td>
-                    <td class="hits"></td>
-                    <td class="source"> OpenStdin: false,</td>
-                </tr>
-                <tr>
-                    <td class="line">34</td>
-                    <td class="hits"></td>
-                    <td class="source"> StdinOnce: false</td>
-                </tr>
-                <tr>
-                    <td class="line">35</td>
-                    <td class="hits"></td>
-                    <td class="source"> }, function (err, container) {</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">36</td>
-                    <td class="hits">5</td>
-                    <td class="source"> if (err) {</td>
-                </tr>
-                <tr class="miss">
-                    <td class="line">37</td>
-                    <td class="hits">0</td>
-                    <td class="source"> item.emit('error', err);</td>
-                </tr>
-                <tr>
-                    <td class="line">38</td>
-                    <td class="hits"></td>
-                    <td class="source"> }</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">39</td>
-                    <td class="hits">5</td>
-                    <td class="source"> container.attach({stream: true, stdout: true, stderr: true}, function (err,
-                        stream) {
-                    </td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">40</td>
-                    <td class="hits">5</td>
-                    <td class="source"> if (err) {</td>
-                </tr>
-                <tr class="miss">
-                    <td class="line">41</td>
-                    <td class="hits">0</td>
-                    <td class="source"> item.emit('error', err);</td>
-                </tr>
-                <tr>
-                    <td class="line">42</td>
-                    <td class="hits"></td>
-                    <td class="source"> }</td>
-                </tr>
-                <tr>
-                    <td class="line">43</td>
-                    <td class="hits"></td>
-                    <td class="source"></td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">44</td>
-                    <td class="hits">5</td>
-                    <td class="source"> stream.setEncoding('utf8');</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">45</td>
-                    <td class="hits">5</td>
-                    <td class="source"> stream.pipe(item, {end: true});</td>
-                </tr>
-                <tr>
-                    <td class="line">46</td>
-                    <td class="hits"></td>
-                    <td class="source"></td>
-                </tr>
-                <tr>
-                    <td class="line">47</td>
-                    <td class="hits"></td>
-                    <td class="source"></td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">48</td>
-                    <td class="hits">5</td>
-                    <td class="source"> container.start(function (err, data) {</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">49</td>
-                    <td class="hits">5</td>
-                    <td class="source"> if (err) {</td>
-                </tr>
-                <tr class="miss">
-                    <td class="line">50</td>
-                    <td class="hits">0</td>
-                    <td class="source"> item.emit('error', err);</td>
-                </tr>
-                <tr>
-                    <td class="line">51</td>
-                    <td class="hits"></td>
-                    <td class="source"> }</td>
-                </tr>
-                <tr>
-                    <td class="line">52</td>
-                    <td class="hits"></td>
-                    <td class="source"></td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">53</td>
-                    <td class="hits">5</td>
-                    <td class="source"> container.wait(function (err, data) {</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">54</td>
-                    <td class="hits">5</td>
-                    <td class="source"> if (err) {</td>
-                </tr>
-                <tr class="miss">
-                    <td class="line">55</td>
-                    <td class="hits">0</td>
-                    <td class="source"> item.emit('error', err);</td>
-                </tr>
-                <tr>
-                    <td class="line">56</td>
-                    <td class="hits"></td>
-                    <td class="source"> } else {</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">57</td>
-                    <td class="hits">5</td>
-                    <td class="source"> item.emit('complete', data);</td>
-                </tr>
-                <tr>
-                    <td class="line">58</td>
-                    <td class="hits"></td>
-                    <td class="source"> }</td>
-                </tr>
-                <tr>
-                    <td class="line">59</td>
-                    <td class="hits"></td>
-                    <td class="source"> });</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">60</td>
-                    <td class="hits">5</td>
-                    <td class="source"> setTimeout(function () {</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">61</td>
-                    <td class="hits">1</td>
-                    <td class="source"> container.stop(function (err, data) {</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">62</td>
-                    <td class="hits">1</td>
-                    <td class="source"> item.emit('timeout', {</td>
-                </tr>
-                <tr>
-                    <td class="line">63</td>
-                    <td class="hits"></td>
-                    <td class="source"> StatusCode: 100</td>
-                </tr>
-                <tr>
-                    <td class="line">64</td>
-                    <td class="hits"></td>
-                    <td class="source"> });</td>
-                </tr>
-                <tr>
-                    <td class="line">65</td>
-                    <td class="hits"></td>
-                    <td class="source"> });</td>
-                </tr>
-                <tr>
-                    <td class="line">66</td>
-                    <td class="hits"></td>
-                    <td class="source"> }, item.item.config.timeout);</td>
-                </tr>
-                <tr>
-                    <td class="line">67</td>
-                    <td class="hits"></td>
-                    <td class="source"> });</td>
-                </tr>
-                <tr>
-                    <td class="line">68</td>
-                    <td class="hits"></td>
-                    <td class="source"> });</td>
-                </tr>
-                <tr>
-                    <td class="line">69</td>
-                    <td class="hits"></td>
-                    <td class="source"> });</td>
-                </tr>
-                <tr>
-                    <td class="line">70</td>
-                    <td class="hits"></td>
-                    <td class="source"></td>
-                </tr>
-                <tr>
-                    <td class="line">71</td>
-                    <td class="hits"></td>
-                    <td class="source"> };</td>
-                </tr>
-                <tr>
-                    <td class="line">72</td>
-                    <td class="hits"></td>
-                    <td class="source"></td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">73</td>
-                    <td class="hits">7</td>
-                    <td class="source"> var putItem = function (item, callback) {</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">74</td>
-                    <td class="hits">5</td>
-                    <td class="source"> var res = new Container(item, callback);</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">75</td>
-                    <td class="hits">5</td>
-                    <td class="source"> processItem(res);</td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">76</td>
-                    <td class="hits">5</td>
-                    <td class="source"> return res;</td>
-                </tr>
-                <tr>
-                    <td class="line">77</td>
-                    <td class="hits"></td>
-                    <td class="source"> };</td>
-                </tr>
-                <tr>
-                    <td class="line">78</td>
-                    <td class="hits"></td>
-                    <td class="source"></td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">79</td>
-                    <td class="hits">7</td>
-                    <td class="source"> return {</td>
-                </tr>
-                <tr>
-                    <td class="line">80</td>
-                    <td class="hits"></td>
-                    <td class="source"> prepare: prepareScript,</td>
-                </tr>
-                <tr>
-                    <td class="line">81</td>
-                    <td class="hits"></td>
-                    <td class="source"> put: putItem</td>
-                </tr>
-                <tr>
-                    <td class="line">82</td>
-                    <td class="hits"></td>
-                    <td class="source"> }</td>
-                </tr>
-                <tr>
-                    <td class="line">83</td>
-                    <td class="hits"></td>
-                    <td class="source">};</td>
-                </tr>
-                <tr>
-                    <td class="line">84</td>
-                    <td class="hits"></td>
-                    <td class="source"></td>
-                </tr>
-                <tr class="hit">
-                    <td class="line">85</td>
-                    <td class="hits">1</td>
-                    <td class="source">module.exports = Worker;</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+<div id="stats" class="high">
+    <div class="percentage">89%</div>
+    <div class="sloc">38</div>
+    <div class="hits">34</div>
+    <div class="misses">4</div>
+</div>
+<table id="source">
+<thead>
+<tr>
+    <th>Line</th>
+    <th>Hits</th>
+    <th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="hit">
+    <td class="line">1</td>
+    <td class="hits">1</td>
+    <td class="source">'use strict';</td>
+</tr>
+<tr>
+    <td class="line">2</td>
+    <td class="hits"></td>
+    <td class="source">// Build handler</td>
+</tr>
+<tr>
+    <td class="line">3</td>
+    <td class="hits"></td>
+    <td class="source">// =============</td>
+</tr>
+<tr>
+    <td class="line">4</td>
+    <td class="hits"></td>
+    <td class="source">//</td>
+</tr>
+<tr>
+    <td class="line">5</td>
+    <td class="hits"></td>
+    <td class="source">// TODO: describe dependencies</td>
+</tr>
+<tr>
+    <td class="line">6</td>
+    <td class="hits"></td>
+    <td class="source">//</td>
+</tr>
+<tr>
+    <td class="line">7</td>
+    <td class="hits"></td>
+    <td class="source"></td>
+</tr>
+<tr class="hit">
+    <td class="line">8</td>
+    <td class="hits">1</td>
+    <td class="source">var Docker = require(&quot;dockerode&quot;);</td>
+</tr>
+<tr class="hit">
+    <td class="line">9</td>
+    <td class="hits">1</td>
+    <td class="source">var Container = require(&quot;/vagrant/platform/worker/lib/./item_container.js&quot;);</td>
+</tr>
+<tr>
+    <td class="line">10</td>
+    <td class="hits"></td>
+    <td class="source"></td>
+</tr>
+<tr>
+    <td class="line">11</td>
+    <td class="hits"></td>
+    <td class="source">// Handles and configures build execution within docker container.</td>
+</tr>
+<tr>
+    <td class="line">12</td>
+    <td class="hits"></td>
+    <td class="source">//</td>
+</tr>
+<tr>
+    <td class="line">13</td>
+    <td class="hits"></td>
+    <td class="source">// `Worker` uses Revealing Module Pattern for expose simple public interface.
+    </td>
+</tr>
+<tr class="hit">
+    <td class="line">14</td>
+    <td class="hits">1</td>
+    <td class="source">var Worker = function () {</td>
+</tr>
+<tr>
+    <td class="line">15</td>
+    <td class="hits"></td>
+    <td class="source"></td>
+</tr>
+<tr>
+    <td class="line">16</td>
+    <td class="hits"></td>
+    <td class="source"> // `dockerode` instance simplifies use of dockers remote API</td>
+</tr>
+<tr class="hit">
+    <td class="line">17</td>
+    <td class="hits">7</td>
+    <td class="source"> var docker = new Docker({</td>
+</tr>
+<tr>
+    <td class="line">18</td>
+    <td class="hits"></td>
+    <td class="source"> socketPath: '/var/run/docker.sock'</td>
+</tr>
+<tr>
+    <td class="line">19</td>
+    <td class="hits"></td>
+    <td class="source"> });</td>
+</tr>
+<tr>
+    <td class="line">20</td>
+    <td class="hits"></td>
+    <td class="source"></td>
+</tr>
+<tr>
+    <td class="line">21</td>
+    <td class="hits"></td>
+    <td class="source"> // Creates shell script from job order literal</td>
+</tr>
+<tr>
+    <td class="line">22</td>
+    <td class="hits"></td>
+    <td class="source"> // Arguments:</td>
+</tr>
+<tr>
+    <td class="line">23</td>
+    <td class="hits"></td>
+    <td class="source"> // - `config` __literal__</td>
+</tr>
+<tr>
+    <td class="line">24</td>
+    <td class="hits"></td>
+    <td class="source"> // {</td>
+</tr>
+<tr>
+    <td class="line">25</td>
+    <td class="hits"></td>
+    <td class="source"> // payload : {</td>
+</tr>
+<tr>
+    <td class="line">26</td>
+    <td class="hits"></td>
+    <td class="source"> // commands : &lt;Array of commands&gt;</td>
+</tr>
+<tr>
+    <td class="line">27</td>
+    <td class="hits"></td>
+    <td class="source"> // },</td>
+</tr>
+<tr>
+    <td class="line">28</td>
+    <td class="hits"></td>
+    <td class="source"> // reposity: {</td>
+</tr>
+<tr>
+    <td class="line">29</td>
+    <td class="hits"></td>
+    <td class="source"> // name : &lt;short name of reposity&gt;</td>
+</tr>
+<tr>
+    <td class="line">30</td>
+    <td class="hits"></td>
+    <td class="source"> // uri : &lt;repository uri&gt;</td>
+</tr>
+<tr>
+    <td class="line">31</td>
+    <td class="hits"></td>
+    <td class="source"> // },</td>
+</tr>
+<tr>
+    <td class="line">32</td>
+    <td class="hits"></td>
+    <td class="source"> // skipSetup : &lt;boolean&gt;</td>
+</tr>
+<tr>
+    <td class="line">33</td>
+    <td class="hits"></td>
+    <td class="source"> // }</td>
+</tr>
+<tr class="hit">
+    <td class="line">34</td>
+    <td class="hits">7</td>
+    <td class="source"> var prepareScript = function (config) {</td>
+</tr>
+<tr class="hit">
+    <td class="line">35</td>
+    <td class="hits">6</td>
+    <td class="source"> var script = [];</td>
+</tr>
+<tr class="hit">
+    <td class="line">36</td>
+    <td class="hits">6</td>
+    <td class="source"> var commands = config.payload.commands;</td>
+</tr>
+<tr class="hit">
+    <td class="line">37</td>
+    <td class="hits">6</td>
+    <td class="source"> for (var idx in commands) {</td>
+</tr>
+<tr class="hit">
+    <td class="line">38</td>
+    <td class="hits">6</td>
+    <td class="source"> script[idx] = &quot;echo '$ &quot; + commands[idx] + &quot;'; &quot; +
+        commands[idx] + &quot; || exit 1;&quot;;
+    </td>
+</tr>
+<tr>
+    <td class="line">39</td>
+    <td class="hits"></td>
+    <td class="source"> }</td>
+</tr>
+<tr class="hit">
+    <td class="line">40</td>
+    <td class="hits">6</td>
+    <td class="source"> var setup = config.skipSetup ? &quot;&quot; : &quot;git clone &quot;+config.reposity.uri+&quot;
+        &amp;&amp; cd &quot;+config.reposity.name+&quot;;&quot;;
+    </td>
+</tr>
+<tr class="hit">
+    <td class="line">41</td>
+    <td class="hits">6</td>
+    <td class="source"> return &quot;(&quot; + setup + script.join('\n') + &quot;)&quot;;</td>
+</tr>
+<tr>
+    <td class="line">42</td>
+    <td class="hits"></td>
+    <td class="source"> };</td>
+</tr>
+<tr>
+    <td class="line">43</td>
+    <td class="hits"></td>
+    <td class="source"></td>
+</tr>
+<tr>
+    <td class="line">44</td>
+    <td class="hits"></td>
+    <td class="source"></td>
+</tr>
+<tr>
+    <td class="line">45</td>
+    <td class="hits"></td>
+    <td class="source"> // Handles execution of build</td>
+</tr>
+<tr>
+    <td class="line">46</td>
+    <td class="hits"></td>
+    <td class="source"> // Arguments:</td>
+</tr>
+<tr>
+    <td class="line">47</td>
+    <td class="hits"></td>
+    <td class="source"> // - `item` __Container__</td>
+</tr>
+<tr class="hit">
+    <td class="line">48</td>
+    <td class="hits">7</td>
+    <td class="source"> var processItem = function (item) {</td>
+</tr>
+<tr>
+    <td class="line">49</td>
+    <td class="hits"></td>
+    <td class="source"></td>
+</tr>
+<tr class="hit">
+    <td class="line">50</td>
+    <td class="hits">5</td>
+    <td class="source"> var script = prepareScript(item.item);</td>
+</tr>
+<tr>
+    <td class="line">51</td>
+    <td class="hits"></td>
+    <td class="source"></td>
+</tr>
+<tr class="hit">
+    <td class="line">52</td>
+    <td class="hits">5</td>
+    <td class="source"> docker.createContainer({</td>
+</tr>
+<tr>
+    <td class="line">53</td>
+    <td class="hits"></td>
+    <td class="source"> Image: 'dockerfile/nodejs',</td>
+</tr>
+<tr>
+    <td class="line">54</td>
+    <td class="hits"></td>
+    <td class="source"> AttachStdin: false,</td>
+</tr>
+<tr>
+    <td class="line">55</td>
+    <td class="hits"></td>
+    <td class="source"> AttachStdout: true,</td>
+</tr>
+<tr>
+    <td class="line">56</td>
+    <td class="hits"></td>
+    <td class="source"> AttachStderr: true,</td>
+</tr>
+<tr>
+    <td class="line">57</td>
+    <td class="hits"></td>
+    <td class="source"> Tty: true,</td>
+</tr>
+<tr>
+    <td class="line">58</td>
+    <td class="hits"></td>
+    <td class="source"> Cmd: ['/bin/sh', '-c', script],</td>
+</tr>
+<tr>
+    <td class="line">59</td>
+    <td class="hits"></td>
+    <td class="source"> OpenStdin: false,</td>
+</tr>
+<tr>
+    <td class="line">60</td>
+    <td class="hits"></td>
+    <td class="source"> StdinOnce: false</td>
+</tr>
+<tr>
+    <td class="line">61</td>
+    <td class="hits"></td>
+    <td class="source"> }, function (err, container) {</td>
+</tr>
+<tr class="hit">
+    <td class="line">62</td>
+    <td class="hits">5</td>
+    <td class="source"> if (err) {</td>
+</tr>
+<tr class="miss">
+    <td class="line">63</td>
+    <td class="hits">0</td>
+    <td class="source"> item.emit('error', err);</td>
+</tr>
+<tr>
+    <td class="line">64</td>
+    <td class="hits"></td>
+    <td class="source"> }</td>
+</tr>
+<tr class="hit">
+    <td class="line">65</td>
+    <td class="hits">5</td>
+    <td class="source"> container.attach({stream: true, stdout: true, stderr: true}, function (err,
+        stream) {
+    </td>
+</tr>
+<tr class="hit">
+    <td class="line">66</td>
+    <td class="hits">5</td>
+    <td class="source"> if (err) {</td>
+</tr>
+<tr class="miss">
+    <td class="line">67</td>
+    <td class="hits">0</td>
+    <td class="source"> item.emit('error', err);</td>
+</tr>
+<tr>
+    <td class="line">68</td>
+    <td class="hits"></td>
+    <td class="source"> }</td>
+</tr>
+<tr>
+    <td class="line">69</td>
+    <td class="hits"></td>
+    <td class="source"></td>
+</tr>
+<tr class="hit">
+    <td class="line">70</td>
+    <td class="hits">5</td>
+    <td class="source"> stream.setEncoding('utf8');</td>
+</tr>
+<tr class="hit">
+    <td class="line">71</td>
+    <td class="hits">5</td>
+    <td class="source"> stream.pipe(item, {end: true});</td>
+</tr>
+<tr>
+    <td class="line">72</td>
+    <td class="hits"></td>
+    <td class="source"></td>
+</tr>
+<tr>
+    <td class="line">73</td>
+    <td class="hits"></td>
+    <td class="source"></td>
+</tr>
+<tr class="hit">
+    <td class="line">74</td>
+    <td class="hits">5</td>
+    <td class="source"> container.start(function (err, data) {</td>
+</tr>
+<tr class="hit">
+    <td class="line">75</td>
+    <td class="hits">5</td>
+    <td class="source"> if (err) {</td>
+</tr>
+<tr class="miss">
+    <td class="line">76</td>
+    <td class="hits">0</td>
+    <td class="source"> item.emit('error', err);</td>
+</tr>
+<tr>
+    <td class="line">77</td>
+    <td class="hits"></td>
+    <td class="source"> }</td>
+</tr>
+<tr>
+    <td class="line">78</td>
+    <td class="hits"></td>
+    <td class="source"></td>
+</tr>
+<tr class="hit">
+    <td class="line">79</td>
+    <td class="hits">5</td>
+    <td class="source"> container.wait(function (err, data) {</td>
+</tr>
+<tr class="hit">
+    <td class="line">80</td>
+    <td class="hits">4</td>
+    <td class="source"> if (err) {</td>
+</tr>
+<tr class="miss">
+    <td class="line">81</td>
+    <td class="hits">0</td>
+    <td class="source"> item.emit('error', err);</td>
+</tr>
+<tr>
+    <td class="line">82</td>
+    <td class="hits"></td>
+    <td class="source"> } else {</td>
+</tr>
+<tr class="hit">
+    <td class="line">83</td>
+    <td class="hits">4</td>
+    <td class="source"> item.emit('complete', data);</td>
+</tr>
+<tr>
+    <td class="line">84</td>
+    <td class="hits"></td>
+    <td class="source"> }</td>
+</tr>
+<tr>
+    <td class="line">85</td>
+    <td class="hits"></td>
+    <td class="source"> });</td>
+</tr>
+<tr class="hit">
+    <td class="line">86</td>
+    <td class="hits">5</td>
+    <td class="source"> setTimeout(function () {</td>
+</tr>
+<tr class="hit">
+    <td class="line">87</td>
+    <td class="hits">1</td>
+    <td class="source"> container.stop(function (err, data) {</td>
+</tr>
+<tr class="hit">
+    <td class="line">88</td>
+    <td class="hits">1</td>
+    <td class="source"> item.emit('timeout', {</td>
+</tr>
+<tr>
+    <td class="line">89</td>
+    <td class="hits"></td>
+    <td class="source"> StatusCode: 100</td>
+</tr>
+<tr>
+    <td class="line">90</td>
+    <td class="hits"></td>
+    <td class="source"> });</td>
+</tr>
+<tr>
+    <td class="line">91</td>
+    <td class="hits"></td>
+    <td class="source"> });</td>
+</tr>
+<tr>
+    <td class="line">92</td>
+    <td class="hits"></td>
+    <td class="source"> }, item.item.config.timeout);</td>
+</tr>
+<tr>
+    <td class="line">93</td>
+    <td class="hits"></td>
+    <td class="source"> });</td>
+</tr>
+<tr>
+    <td class="line">94</td>
+    <td class="hits"></td>
+    <td class="source"> });</td>
+</tr>
+<tr>
+    <td class="line">95</td>
+    <td class="hits"></td>
+    <td class="source"> });</td>
+</tr>
+<tr>
+    <td class="line">96</td>
+    <td class="hits"></td>
+    <td class="source"></td>
+</tr>
+<tr>
+    <td class="line">97</td>
+    <td class="hits"></td>
+    <td class="source"> };</td>
+</tr>
+<tr>
+    <td class="line">98</td>
+    <td class="hits"></td>
+    <td class="source"></td>
+</tr>
+<tr class="hit">
+    <td class="line">99</td>
+    <td class="hits">7</td>
+    <td class="source"> var putItem = function (item, callback) {</td>
+</tr>
+<tr class="hit">
+    <td class="line">100</td>
+    <td class="hits">5</td>
+    <td class="source"> var res = new Container(item, callback);</td>
+</tr>
+<tr class="hit">
+    <td class="line">101</td>
+    <td class="hits">5</td>
+    <td class="source"> processItem(res);</td>
+</tr>
+<tr class="hit">
+    <td class="line">102</td>
+    <td class="hits">5</td>
+    <td class="source"> return res;</td>
+</tr>
+<tr>
+    <td class="line">103</td>
+    <td class="hits"></td>
+    <td class="source"> };</td>
+</tr>
+<tr>
+    <td class="line">104</td>
+    <td class="hits"></td>
+    <td class="source"></td>
+</tr>
+<tr>
+    <td class="line">105</td>
+    <td class="hits"></td>
+    <td class="source"></td>
+</tr>
+<tr>
+    <td class="line">106</td>
+    <td class="hits"></td>
+    <td class="source"> // Exposes public interface</td>
+</tr>
+<tr class="hit">
+    <td class="line">107</td>
+    <td class="hits">7</td>
+    <td class="source"> return {</td>
+</tr>
+<tr>
+    <td class="line">108</td>
+    <td class="hits"></td>
+    <td class="source"> prepare: prepareScript,</td>
+</tr>
+<tr>
+    <td class="line">109</td>
+    <td class="hits"></td>
+    <td class="source"> put: putItem</td>
+</tr>
+<tr>
+    <td class="line">110</td>
+    <td class="hits"></td>
+    <td class="source"> }</td>
+</tr>
+<tr>
+    <td class="line">111</td>
+    <td class="hits"></td>
+    <td class="source">};</td>
+</tr>
+<tr>
+    <td class="line">112</td>
+    <td class="hits"></td>
+    <td class="source"></td>
+</tr>
+<tr class="hit">
+    <td class="line">113</td>
+    <td class="hits">1</td>
+    <td class="source">module.exports = Worker;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </body>
 </html>
