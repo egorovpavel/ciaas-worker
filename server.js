@@ -1,8 +1,9 @@
 'use strict';
-var Client = require('./lib/client.js');
+
 var Logger = require('winston');
 var config = require('./config.json')[process.env.NODE_ENV || 'development'];
 var npid = require('npid');
+var Client = require('./lib/client.js');
 
 try {
 
@@ -11,6 +12,8 @@ try {
     	pid.removeOnExit();
     	process.exit(1);
     };
+    console.log("ENV:",[process.env]);
+    console.log("CONNECTION CONFIG:",[config]);
     var client = new Client(config.host, config.port, Logger);
     process.on('SIGINT',controlledExit).on('SIGTERM', controlledExit);
     pid.removeOnExit();
